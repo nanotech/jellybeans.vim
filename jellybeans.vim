@@ -5,10 +5,21 @@
 "  "     \ \/ _ \ | | | | |  _ \ / _ \/ _  |  _ \/ __|   "
 "  "  /\_/ /  __/ | | |_| | |_| |  __/ |_| | | | \__ \   "
 "  "  \___/ \___|_|_|\__  |____/ \___|\____|_| |_|___/   "
-"  "                 \___/                               "
+"  "                 \___/                    256MOD     "
 "
 "         "A colorful, dark color scheme for Vim."
 "
+" File:         jellybeans256.vim
+" Maintainer:   Daniel Herbert <http://pocket-ninja.com>
+" Version:      1.2
+" Last Change:  May 26nd, 2009
+" Notes:        Added functions from (wombat|desert)256.vim and replaced all
+"               hi calls so that jellybeans awesomeness can be replicated as
+"               accurately as possible in a 88/256 color terminal.
+"               - Credit to David Liang who in turn credits Henry So Jr.
+"               - Credit to NanoTech for an awesome colorscheme
+"
+" " BASED ON THE ORIGINAL JELLYBEANS COLORSCHEME " "
 " File:         jellybeans.vim
 " Maintainer:   NanoTech <http://nanotech.nanotechcorp.net/>
 " Version:      1.1
@@ -33,7 +44,6 @@
 " LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 " OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 " THE SOFTWARE.
-"
 
 set background=dark
 
@@ -43,66 +53,282 @@ if exists("syntax_on")
   syntax reset
 endif
 
-let colors_name = "jellybeans"
+let colors_name = "jellybeans256"
 
-if version >= 700
-  hi CursorLine guibg=#1c1c1c cterm=none
-  hi CursorColumn guibg=#1c1c1c
-  hi MatchParen guifg=white guibg=#80a090 gui=bold
 
-  hi TabLine guifg=black guibg=#b0b8c0 gui=italic ctermbg=black term=none
-  hi TabLineFill guifg=#9098a0
-  hi TabLineSel guifg=black guibg=#f0f0f0 gui=italic,bold term=bold
-
-  " Auto-completion
-  hi Pmenu guifg=white guibg=#000000
-  hi PmenuSel guifg=#101010 guibg=#eeeeee
+if !has("gui_running") && &t_Co != 88 && &t_Co != 256
+	finish
 endif
 
-hi Visual guibg=#404040
+" functions {{{
+" returns an approximate grey index for the given grey level
+fun <SID>grey_number(x)
+	if &t_Co == 88
+		if a:x < 23
+			return 0
+		elseif a:x < 69
+			return 1
+		elseif a:x < 103
+			return 2
+		elseif a:x < 127
+			return 3
+		elseif a:x < 150
+			return 4
+		elseif a:x < 173
+			return 5
+		elseif a:x < 196
+			return 6
+		elseif a:x < 219
+			return 7
+		elseif a:x < 243
+			return 8
+		else
+			return 9
+		endif
+	else
+		if a:x < 14
+			return 0
+		else
+			let l:n = (a:x - 8) / 10
+			let l:m = (a:x - 8) % 10
+			if l:m < 5
+				return l:n
+			else
+				return l:n + 1
+			endif
+		endif
+	endif
+endfun
 
-hi Cursor guibg=#b0d0f0
+" returns the actual grey level represented by the grey index
+fun <SID>grey_level(n)
+	if &t_Co == 88
+		if a:n == 0
+			return 0
+		elseif a:n == 1
+			return 46
+		elseif a:n == 2
+			return 92
+		elseif a:n == 3
+			return 115
+		elseif a:n == 4
+			return 139
+		elseif a:n == 5
+			return 162
+		elseif a:n == 6
+			return 185
+		elseif a:n == 7
+			return 208
+		elseif a:n == 8
+			return 231
+		else
+			return 255
+		endif
+	else
+		if a:n == 0
+			return 0
+		else
+			return 8 + (a:n * 10)
+		endif
+	endif
+endfun
 
-hi Normal guifg=#e8e8d3 guibg=#151515 ctermfg=white ctermbg=none
-hi LineNr guifg=#605958 guibg=#151515 gui=none ctermfg=black
-hi Comment guifg=#888888 gui=italic ctermbg=none ctermfg=grey
-hi Todo guifg=#808080 guibg=NONE gui=bold,italic
+" returns the palette index for the given grey index
+fun <SID>grey_color(n)
+	if &t_Co == 88
+		if a:n == 0
+			return 16
+		elseif a:n == 9
+			return 79
+		else
+			return 79 + a:n
+		endif
+	else
+		if a:n == 0
+			return 16
+		elseif a:n == 25
+			return 231
+		else
+			return 231 + a:n
+		endif
+	endif
+endfun
 
-hi StatusLine guifg=#f0f0f0 guibg=#101010 gui=italic
-hi StatusLineNC guifg=#a0a0a0 guibg=#181818 gui=italic
-hi VertSplit guifg=#181818 guibg=#181818 gui=italic
+" returns an approximate color index for the given color level
+fun <SID>rgb_number(x)
+	if &t_Co == 88
+		if a:x < 69
+			return 0
+		elseif a:x < 172
+			return 1
+		elseif a:x < 230
+			return 2
+		else
+			return 3
+		endif
+	else
+		if a:x < 75
+			return 0
+		else
+			let l:n = (a:x - 55) / 40
+			let l:m = (a:x - 55) % 40
+			if l:m < 20
+				return l:n
+			else
+				return l:n + 1
+			endif
+		endif
+	endif
+endfun
 
-hi Folded guibg=#384048 guifg=#a0a8b0 gui=italic ctermbg=none ctermfg=black
-hi FoldColumn guibg=#384048 guifg=#a0a8b0
-hi SignColumn guibg=#384048 guifg=#a0a8b0
+" returns the actual color level for the given color index
+fun <SID>rgb_level(n)
+	if &t_Co == 88
+		if a:n == 0
+			return 0
+		elseif a:n == 1
+			return 139
+		elseif a:n == 2
+			return 205
+		else
+			return 255
+		endif
+	else
+		if a:n == 0
+			return 0
+		else
+			return 55 + (a:n * 40)
+		endif
+	endif
+endfun
 
-hi Title guifg=#70b950 gui=bold
+" returns the palette index for the given R/G/B color indices
+fun <SID>rgb_color(x, y, z)
+	if &t_Co == 88
+		return 16 + (a:x * 16) + (a:y * 4) + a:z
+	else
+		return 16 + (a:x * 36) + (a:y * 6) + a:z
+	endif
+endfun
 
-hi Constant guifg=#cf6a4c ctermfg=red
-hi Special guifg=#799d6a ctermfg=green
-hi Delimiter guifg=#668799 ctermfg=grey
+" returns the palette index to approximate the given R/G/B color levels
+fun <SID>color(r, g, b)
+	" get the closest grey
+	let l:gx = <SID>grey_number(a:r)
+	let l:gy = <SID>grey_number(a:g)
+	let l:gz = <SID>grey_number(a:b)
 
-hi String guifg=#99ad6a ctermfg=green
-hi StringDelimiter guifg=#556633 ctermfg=darkgreen
+	" get the closest color
+	let l:x = <SID>rgb_number(a:r)
+	let l:y = <SID>rgb_number(a:g)
+	let l:z = <SID>rgb_number(a:b)
 
-hi Identifier guifg=#c6b6ee ctermfg=lightcyan
-hi Structure guifg=#8fbfdc gui=NONE ctermfg=lightcyan
-hi Function guifg=#fad07a ctermfg=yellow
-hi Statement guifg=#8197bf gui=NONE ctermfg=darkblue
-hi PreProc guifg=#8fbfdc ctermfg=lightblue
+	if l:gx == l:gy && l:gy == l:gz
+		" there are two possibilities
+		let l:dgr = <SID>grey_level(l:gx) - a:r
+		let l:dgg = <SID>grey_level(l:gy) - a:g
+		let l:dgb = <SID>grey_level(l:gz) - a:b
+		let l:dgrey = (l:dgr * l:dgr) + (l:dgg * l:dgg) + (l:dgb * l:dgb)
+		let l:dr = <SID>rgb_level(l:gx) - a:r
+		let l:dg = <SID>rgb_level(l:gy) - a:g
+		let l:db = <SID>rgb_level(l:gz) - a:b
+		let l:drgb = (l:dr * l:dr) + (l:dg * l:dg) + (l:db * l:db)
+		if l:dgrey < l:drgb
+			" use the grey
+			return <SID>grey_color(l:gx)
+		else
+			" use the color
+			return <SID>rgb_color(l:x, l:y, l:z)
+		endif
+	else
+		" only one possibility
+		return <SID>rgb_color(l:x, l:y, l:z)
+	endif
+endfun
+
+" returns the palette index to approximate the 'rrggbb' hex string
+fun <SID>rgb(rgb)
+	let l:r = ("0x" . strpart(a:rgb, 0, 2)) + 0
+	let l:g = ("0x" . strpart(a:rgb, 2, 2)) + 0
+	let l:b = ("0x" . strpart(a:rgb, 4, 2)) + 0
+	return <SID>color(l:r, l:g, l:b)
+endfun
+
+" sets the highlighting for the given group
+fun <SID>X(group, fg, bg, attr)
+	if a:fg != ""
+		exec "hi ".a:group." guifg=#".a:fg." ctermfg=".<SID>rgb(a:fg)
+	endif
+	if a:bg != ""
+		exec "hi ".a:group." guibg=#".a:bg." ctermbg=".<SID>rgb(a:bg)
+	endif
+	if a:attr != ""
+		if a:attr == 'italic'
+			exec "hi ".a:group." gui=".a:attr." cterm=none"
+		else
+			exec "hi ".a:group." gui=".a:attr." cterm=".a:attr
+		endif
+	endif
+endfun
+" }}}
+
+if version >= 700
+  call <SID>X("CursorLine","","1c1c1c","")
+  call <SID>X("CursorColumn","","1c1c1c","")
+  call <SID>X("MatchParen","ffffff","80a090","bold")
+
+  call <SID>X("TabLine","000000","b0b8c0","italic")
+  call <SID>X("TabLineFill","9098a0","","")
+  call <SID>X("TabLineSel","000000","f0f0f0","italic,bold")
+
+  " Auto-completion
+  call <SID>X("Pmenu","ffffff","000000","")
+  call <SID>X("PmenuSel","101010","eeeeee","")
+endif
+
+call <SID>X("Visual","","404040","")
+
+call <SID>X("Cursor","","b0d0f0","")
+
+call <SID>X("Normal","e8e8d3","151515","")
+call <SID>X("LineNr","605958","151515","none")
+call <SID>X("Comment","888888","","italic")
+call <SID>X("Todo","808080","NONE","bold,italic")
+
+call <SID>X("StatusLine","f0f0f0","101010","italic")
+call <SID>X("StatusLineNC","a0a0a0","181818","italic")
+call <SID>X("VertSplit","181818","181818","italic")
+
+call <SID>X("Folded","a0a8b0","384048","italic")
+call <SID>X("FoldColumn","a0a8b0","384048","")
+call <SID>X("SignColumn","a0a8b0","384048","")
+
+call <SID>X("Title","70b950","","bold")
+
+call <SID>X("Constant","cf6a4c","","")
+call <SID>X("Special","799d6a","","")
+call <SID>X("Delimiter","668799","","")
+
+call <SID>X("String","99ad6a","","")
+call <SID>X("StringDelimiter","556633","","")
+
+call <SID>X("Identifier","c6b6ee","","")
+call <SID>X("Structure","8fbfdc","","NONE")
+call <SID>X("Function","fad07a","","")
+call <SID>X("Statement","8197bf","","NONE")
+call <SID>X("PreProc","8fbfdc","","")
 
 hi link Operator Normal
 
-hi Type guifg=#ffb964 gui=NONE ctermfg=yellow
-hi NonText guifg=#808080 guibg=#151515
+call <SID>X("Type","ffb964","","NONE")
+call <SID>X("NonText","808080","151515","")
 
-hi SpecialKey guifg=#808080 guibg=#343434
+call <SID>X("SpecialKey","808080","343434","")
 
-hi Search guifg=#f0a0c0 guibg=#302028 gui=underline ctermbg=none ctermfg=magenta cterm=underline
+call <SID>X("Search","f0a0c0","302028","underline")
 
-hi Directory guifg=#dad085 gui=none
-hi ErrorMsg guibg=#902020 gui=none
-hi link Error ErrorMsg
+call <SID>X("Directory","dad085","","NONE")
+call <SID>X("Error","","902020","")
 
 " Diff
 
@@ -111,15 +337,15 @@ hi link diffAdded String
 
 " VimDiff
 
-hi DiffAdd guibg=#032218 ctermbg=darkgreen ctermfg=black
-hi DiffChange guibg=#100920 ctermbg=darkmagenta ctermfg=black
-hi DiffDelete guibg=#220000 guifg=#220000 ctermbg=darkred ctermfg=black
-hi DiffText guibg=#000940 ctermbg=darkred
+call <SID>X("DiffAdd","","032218","")
+call <SID>X("DiffChange","","100920","")
+call <SID>X("DiffDelete","220000","220000","")
+call <SID>X("DiffText","","000940","")
 
 " PHP
 
 hi link phpFunctions Function
-hi StorageClass guifg=#c59f6f ctermfg=red
+call <SID>X("StorageClass","c59f6f","","")
 hi link phpSuperglobal Identifier
 hi link phpQuoteSingle StringDelimiter
 hi link phpQuoteDouble StringDelimiter
@@ -130,24 +356,24 @@ hi link phpArrayPair Operator
 " Ruby
 
 hi link rubySharpBang Comment
-hi rubyClass guifg=#447799 ctermfg=darkblue
-hi rubyIdentifier guifg=#c6b6fe
+call <SID>X("rubyClass","447799","","")
+call <SID>X("rubyIdentifier","c6b6fe","","")
 
-hi rubyInstanceVariable guifg=#c6b6fe ctermfg=cyan
-hi rubySymbol guifg=#7697d6 ctermfg=blue
+call <SID>X("rubyInstanceVariable","c6b6fe","","")
+call <SID>X("rubySymbol","7697d6","","")
 hi link rubyGlobalVariable rubyInstanceVariable
 hi link rubyModule rubyClass
-hi rubyControl guifg=#7597c6
+call <SID>X("rubyControl","7597c6","","")
 
 hi link rubyString String
 hi link rubyStringDelimiter StringDelimiter
 hi link rubyInterpolationDelimiter Identifier
 
-hi rubyRegexpDelimiter guifg=#540063 ctermfg=magenta
-hi rubyRegexp guifg=#dd0093 ctermfg=darkmagenta
-hi rubyRegexpSpecial guifg=#a40073 ctermfg=magenta
+call <SID>X("rubyRegexpDelimiter","540063","","")
+call <SID>X("rubyRegexp","dd0093","","")
+call <SID>X("rubyRegexpSpecial","a40073","","")
 
-hi rubyPredefinedIdentifier guifg=#de5577 ctermfg=red
+call <SID>X("rubyPredefinedIdentifier","de5577","","")
 
 " JavaScript
 hi link javaScriptValue Constant
@@ -155,3 +381,15 @@ hi link javaScriptRegexpString rubyRegexp
 
 " Tag list
 hi link TagListFileName Directory
+
+" delete functions {{{
+delf <SID>X
+delf <SID>rgb
+delf <SID>color
+delf <SID>rgb_color
+delf <SID>rgb_level
+delf <SID>rgb_number
+delf <SID>grey_color
+delf <SID>grey_level
+delf <SID>grey_number
+" }}}
