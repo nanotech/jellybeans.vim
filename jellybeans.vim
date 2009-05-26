@@ -3,7 +3,7 @@
 "  "    __       _ _       _                             "
 "  "    \ \  ___| | |_   _| |__   ___  __ _ _ __  ___    "
 "  "     \ \/ _ \ | | | | |  _ \ / _ \/ _  |  _ \/ __|   "
-"  "  /\_/ /  __/ | | |_| | |_) |  __/ |_| | | | \__ \   "
+"  "  /\_/ /  __/ | | |_| | |_| |  __/ |_| | | | \__ \   "
 "  "  \___/ \___|_|_|\__  |____/ \___|\____|_| |_|___/   "
 "  "                 \___/                               "
 "
@@ -50,9 +50,9 @@ if version >= 700
   hi CursorColumn guibg=#1c1c1c
   hi MatchParen guifg=white guibg=#80a090 gui=bold
 
-  hi TabLine guifg=black guibg=#b0b8c0 gui=italic
+  hi TabLine guifg=black guibg=#b0b8c0 gui=italic ctermbg=black term=none
   hi TabLineFill guifg=#9098a0
-  hi TabLineSel guifg=black guibg=#f0f0f0 gui=italic,bold
+  hi TabLineSel guifg=black guibg=#f0f0f0 gui=italic,bold term=bold
 
   " Auto-completion
   hi Pmenu guifg=white guibg=#000000
@@ -100,8 +100,9 @@ hi SpecialKey guifg=#808080 guibg=#343434
 
 hi Search guifg=#f0a0c0 guibg=#302028 gui=underline ctermbg=none ctermfg=magenta cterm=underline
 
-hi Directory guifg=#dad085 gui=NONE
-hi Error guibg=#602020
+hi Directory guifg=#dad085 gui=none
+hi ErrorMsg guibg=#902020 gui=none
+hi link Error ErrorMsg
 
 " Diff
 
@@ -122,6 +123,9 @@ hi StorageClass guifg=#c59f6f ctermfg=red
 hi link phpSuperglobal Identifier
 hi link phpQuoteSingle StringDelimiter
 hi link phpQuoteDouble StringDelimiter
+hi link phpBoolean Constant
+hi link phpNull Constant
+hi link phpArrayPair Operator
 
 " Ruby
 
