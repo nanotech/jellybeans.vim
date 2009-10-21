@@ -394,6 +394,17 @@ call s:X("rubyPredefinedIdentifier","de5577","","","Red","")
 hi link javaScriptValue Constant
 hi link javaScriptRegexpString rubyRegexp
 
+" Objective-C/Cocoa
+hi link objcClass Type
+hi link cocoaClass objcClass
+hi link objcSubclass objcClass
+hi link objcSuperclass objcClass
+hi link objcDirective rubyClass
+hi link cocoaFunction Function
+hi link objcMethodName Identifier
+hi link objcMethodArg Normal
+hi link objcMessageName Identifier
+
 " Tag list
 hi link TagListFileName Directory
 
