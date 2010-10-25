@@ -394,6 +394,10 @@ call s:X("rubyPredefinedIdentifier","de5577","","","Red","")
 hi link javaScriptValue Constant
 hi link javaScriptRegexpString rubyRegexp
 
+" C
+
+hi link cOperator Constant
+
 " Objective-C/Cocoa
 hi link objcClass Type
 hi link cocoaClass objcClass
