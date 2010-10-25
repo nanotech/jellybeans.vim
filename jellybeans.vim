@@ -335,9 +335,9 @@ call s:X("PreProc","8fbfdc","","","LightBlue","")
 hi link Operator Normal
 
 call s:X("Type","ffb964","","","Yellow","")
-call s:X("NonText","808080","151515","","","")
+call s:X("NonText","606060","151515","","","")
 
-call s:X("SpecialKey","808080","343434","","","")
+call s:X("SpecialKey","444444","1c1c1c","","","")
 
 call s:X("Search","f0a0c0","302028","underline","Magenta","")
 
