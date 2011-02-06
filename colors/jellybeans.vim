@@ -312,6 +312,7 @@ call s:X("Todo","808080","","bold","","")
 call s:X("StatusLine","000000","dddddd","italic","Black","White")
 call s:X("StatusLineNC","ffffff","403c41","italic","White","Black")
 call s:X("VertSplit","777777","403c41","italic","Black","Black")
+call s:X("WildMenu","f0a0c0","302028","","Magenta","")
 
 call s:X("Folded","a0a8b0","384048","italic","black","")
 call s:X("FoldColumn","a0a8b0","384048","","","")
