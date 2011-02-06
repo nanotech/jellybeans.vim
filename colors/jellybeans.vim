@@ -287,6 +287,9 @@ fun! s:X(group, fg, bg, attr, lcfg, lcbg)
 endfun
 " }}}
 
+call s:X("Normal","e8e8d3","151515","","White","")
+set background=dark
+
 if version >= 700
   call s:X("CursorLine","","1c1c1c","","","")
   call s:X("CursorColumn","","1c1c1c","","","")
@@ -304,7 +307,6 @@ endif
 call s:X("Visual","","404040","","","")
 call s:X("Cursor","","b0d0f0","","","")
 
-call s:X("Normal","e8e8d3","151515","","White","")
 call s:X("LineNr","605958","151515","none","Black","")
 call s:X("Comment","888888","","italic","Grey","")
 call s:X("Todo","808080","","bold","","")
