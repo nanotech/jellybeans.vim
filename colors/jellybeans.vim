@@ -335,7 +335,7 @@ call s:X("Function","fad07a","","","Yellow","")
 call s:X("Statement","8197bf","","","DarkBlue","")
 call s:X("PreProc","8fbfdc","","","LightBlue","")
 
-hi link Operator Normal
+hi! link Operator Normal
 
 call s:X("Type","ffb964","","","Yellow","")
 call s:X("NonText","606060","151515","","","")
@@ -346,7 +346,7 @@ call s:X("Search","f0a0c0","302028","underline","Magenta","")
 
 call s:X("Directory","dad085","","","","")
 call s:X("ErrorMsg","","902020","","","")
-hi link Error ErrorMsg
+hi! link Error ErrorMsg
 
 " Spell Checking
 
@@ -357,8 +357,8 @@ call s:X("SpellLocal","","2D7067","underline","","Green")
 
 " Diff
 
-hi link diffRemoved Constant
-hi link diffAdded String
+hi! link diffRemoved Constant
+hi! link diffAdded String
 
 " VimDiff
 
@@ -369,30 +369,30 @@ call s:X("DiffText","","000940","","","DarkRed")
 
 " PHP
 
-hi link phpFunctions Function
+hi! link phpFunctions Function
 call s:X("StorageClass","c59f6f","","","Red","")
-hi link phpSuperglobal Identifier
-hi link phpQuoteSingle StringDelimiter
-hi link phpQuoteDouble StringDelimiter
-hi link phpBoolean Constant
-hi link phpNull Constant
-hi link phpArrayPair Operator
+hi! link phpSuperglobal Identifier
+hi! link phpQuoteSingle StringDelimiter
+hi! link phpQuoteDouble StringDelimiter
+hi! link phpBoolean Constant
+hi! link phpNull Constant
+hi! link phpArrayPair Operator
 
 " Ruby
 
-hi link rubySharpBang Comment
+hi! link rubySharpBang Comment
 call s:X("rubyClass","447799","","","DarkBlue","")
 call s:X("rubyIdentifier","c6b6fe","","","","")
 
 call s:X("rubyInstanceVariable","c6b6fe","","","Cyan","")
 call s:X("rubySymbol","7697d6","","","Blue","")
-hi link rubyGlobalVariable rubyInstanceVariable
-hi link rubyModule rubyClass
+hi! link rubyGlobalVariable rubyInstanceVariable
+hi! link rubyModule rubyClass
 call s:X("rubyControl","7597c6","","","","")
 
-hi link rubyString String
-hi link rubyStringDelimiter StringDelimiter
-hi link rubyInterpolationDelimiter Identifier
+hi! link rubyString String
+hi! link rubyStringDelimiter StringDelimiter
+hi! link rubyInterpolationDelimiter Identifier
 
 call s:X("rubyRegexpDelimiter","540063","","","Magenta","")
 call s:X("rubyRegexp","dd0093","","","DarkMagenta","")
@@ -401,26 +401,26 @@ call s:X("rubyRegexpSpecial","a40073","","","Magenta","")
 call s:X("rubyPredefinedIdentifier","de5577","","","Red","")
 
 " JavaScript
-hi link javaScriptValue Constant
-hi link javaScriptRegexpString rubyRegexp
+hi! link javaScriptValue Constant
+hi! link javaScriptRegexpString rubyRegexp
 
 " C
 
-hi link cOperator Constant
+hi! link cOperator Constant
 
 " Objective-C/Cocoa
-hi link objcClass Type
-hi link cocoaClass objcClass
-hi link objcSubclass objcClass
-hi link objcSuperclass objcClass
-hi link objcDirective rubyClass
-hi link cocoaFunction Function
-hi link objcMethodName Identifier
-hi link objcMethodArg Normal
-hi link objcMessageName Identifier
+hi! link objcClass Type
+hi! link cocoaClass objcClass
+hi! link objcSubclass objcClass
+hi! link objcSuperclass objcClass
+hi! link objcDirective rubyClass
+hi! link cocoaFunction Function
+hi! link objcMethodName Identifier
+hi! link objcMethodArg Normal
+hi! link objcMessageName Identifier
 
 " Tag list
-hi link TagListFileName Directory
+hi! link TagListFileName Directory
 
 " Manual overrides for 256-color terminals. Dark colors auto-map badly.
 if !s:low_color
