@@ -348,6 +348,13 @@ call s:X("Directory","dad085","","","","")
 call s:X("ErrorMsg","","902020","","","")
 hi link Error ErrorMsg
 
+" Spell Checking
+
+call s:X("SpellBad","","902020","underline","","DarkRed")
+call s:X("SpellCap","","0000df","underline","","Blue")
+call s:X("SpellRare","","540063","underline","","DarkMagenta")
+call s:X("SpellLocal","","2D7067","underline","","Green")
+
 " Diff
 
 hi link diffRemoved Constant
