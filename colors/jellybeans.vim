@@ -422,6 +422,17 @@ hi link objcMessageName Identifier
 " Tag list
 hi link TagListFileName Directory
 
+" Manual overrides for 256-color terminals. Dark colors auto-map badly.
+if !s:low_color
+  hi StatusLineNC ctermbg=234
+  hi Folded ctermbg=236
+  hi FoldColumn ctermbg=236
+  hi SignColumn ctermbg=236
+  hi DiffAdd ctermbg=22
+  hi DiffDelete ctermbg=52
+  hi DiffChange ctermbg=17
+endif
+
 " delete functions {{{
 delf s:X
 delf s:rgb
