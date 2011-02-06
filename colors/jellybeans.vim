@@ -431,6 +431,7 @@ if !s:low_color
   hi DiffAdd ctermbg=22
   hi DiffDelete ctermbg=52
   hi DiffChange ctermbg=17
+  hi DiffText ctermbg=19
 endif
 
 " delete functions {{{
