@@ -291,36 +291,36 @@ call s:X("Normal","e8e8d3","151515","","White","")
 set background=dark
 
 if version >= 700
-  call s:X("CursorLine","","1c1c1c","","","")
-  call s:X("CursorColumn","","1c1c1c","","","")
-  call s:X("MatchParen","ffffff","80a090","bold","","")
+  call s:X("CursorLine","","1c1c1c","","","Black")
+  call s:X("CursorColumn","","1c1c1c","","","Black")
+  call s:X("MatchParen","ffffff","80a090","bold","","DarkCyan")
 
   call s:X("TabLine","000000","b0b8c0","italic","","Black")
-  call s:X("TabLineFill","9098a0","","","","")
-  call s:X("TabLineSel","000000","f0f0f0","italic,bold","","")
+  call s:X("TabLineFill","9098a0","","","","Black")
+  call s:X("TabLineSel","000000","f0f0f0","italic,bold","Black","White")
 
   " Auto-completion
-  call s:X("Pmenu","ffffff","000000","","","")
-  call s:X("PmenuSel","101010","eeeeee","","","")
+  call s:X("Pmenu","ffffff","000000","","White","Black")
+  call s:X("PmenuSel","101010","eeeeee","reverse","White","")
 endif
 
-call s:X("Visual","","404040","","","")
+call s:X("Visual","","404040","","","Black")
 call s:X("Cursor","","b0d0f0","","","")
 
 call s:X("LineNr","605958","151515","none","Black","")
 call s:X("Comment","888888","","italic","Grey","")
-call s:X("Todo","808080","","bold","","")
+call s:X("Todo","808080","","bold","White","Black")
 
 call s:X("StatusLine","000000","dddddd","italic","Black","White")
 call s:X("StatusLineNC","ffffff","403c41","italic","White","Black")
 call s:X("VertSplit","777777","403c41","italic","Black","Black")
 call s:X("WildMenu","f0a0c0","302028","","Magenta","")
 
-call s:X("Folded","a0a8b0","384048","italic","black","")
-call s:X("FoldColumn","a0a8b0","384048","","","")
-call s:X("SignColumn","a0a8b0","384048","","","")
+call s:X("Folded","a0a8b0","384048","italic","Black","")
+call s:X("FoldColumn","a0a8b0","384048","","","Black")
+hi! link SignColumn FoldColumn
 
-call s:X("Title","70b950","","bold","","")
+call s:X("Title","70b950","","bold","Green","")
 
 call s:X("Constant","cf6a4c","","","Red","")
 call s:X("Special","799d6a","","","Green","")
@@ -338,14 +338,14 @@ call s:X("PreProc","8fbfdc","","","LightBlue","")
 hi! link Operator Normal
 
 call s:X("Type","ffb964","","","Yellow","")
-call s:X("NonText","606060","151515","","","")
+call s:X("NonText","606060","151515","","Black","")
 
-call s:X("SpecialKey","444444","1c1c1c","","","")
+call s:X("SpecialKey","444444","1c1c1c","","Black","")
 
 call s:X("Search","f0a0c0","302028","underline","Magenta","")
 
-call s:X("Directory","dad085","","","","")
-call s:X("ErrorMsg","","902020","","","")
+call s:X("Directory","dad085","","","Yellow","")
+call s:X("ErrorMsg","","902020","","","DarkRed")
 hi! link Error ErrorMsg
 
 " Spell Checking
@@ -382,13 +382,13 @@ hi! link phpArrayPair Operator
 
 hi! link rubySharpBang Comment
 call s:X("rubyClass","447799","","","DarkBlue","")
-call s:X("rubyIdentifier","c6b6fe","","","","")
+call s:X("rubyIdentifier","c6b6fe","","","Cyan","")
 
 call s:X("rubyInstanceVariable","c6b6fe","","","Cyan","")
 call s:X("rubySymbol","7697d6","","","Blue","")
 hi! link rubyGlobalVariable rubyInstanceVariable
 hi! link rubyModule rubyClass
-call s:X("rubyControl","7597c6","","","","")
+call s:X("rubyControl","7597c6","","","Blue","")
 
 hi! link rubyString String
 hi! link rubyStringDelimiter StringDelimiter
