@@ -404,6 +404,10 @@ call s:X("rubyPredefinedIdentifier","de5577","","","Red","")
 hi! link javaScriptValue Constant
 hi! link javaScriptRegexpString rubyRegexp
 
+" CoffeeScript
+
+hi! link coffeeRegExp javaScriptRegexpString
+
 " C
 
 hi! link cOperator Constant
