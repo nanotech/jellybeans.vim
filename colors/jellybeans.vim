@@ -300,8 +300,8 @@ if version >= 700
   call s:X("TabLineSel","000000","f0f0f0","italic,bold","Black","White")
 
   " Auto-completion
-  call s:X("Pmenu","ffffff","000000","","White","Black")
-  call s:X("PmenuSel","101010","eeeeee","reverse","White","")
+  call s:X("Pmenu","ffffff","606060","","White","Black")
+  call s:X("PmenuSel","101010","eeeeee","","Black","White")
 endif
 
 call s:X("Visual","","404040","","","Black")
