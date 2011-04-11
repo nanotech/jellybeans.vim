@@ -12,7 +12,7 @@
 " File:         jellybeans.vim
 " Maintainer:   NanoTech <http://nanotech.nanotechcorp.net/>
 " Version:      1.4~git
-" Last Change:  February 5th, 2011
+" Last Change:  April 11th, 2011
 " Contributors: Daniel Herbert <http://pocket-ninja.com>,
 "               Henry So, Jr. <henryso@panix.com>,
 "               David Liang <bmdavll at gmail dot com>
