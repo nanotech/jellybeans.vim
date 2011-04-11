@@ -428,6 +428,10 @@ hi! link objcMessageName Identifier
 " Tag list
 hi! link TagListFileName Directory
 
+" Plugins, etc.
+
+call s:X("PreciseJumpTarget","B9ED67","405026","","White","Green")
+
 " Manual overrides for 256-color terminals. Dark colors auto-map badly.
 if !s:low_color
   hi StatusLineNC ctermbg=234
