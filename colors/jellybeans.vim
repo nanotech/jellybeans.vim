@@ -347,6 +347,9 @@ call s:X("Search","f0a0c0","302028","underline","Magenta","")
 call s:X("Directory","dad085","","","Yellow","")
 call s:X("ErrorMsg","","902020","","","DarkRed")
 hi! link Error ErrorMsg
+hi! link MoreMsg Special
+call s:X("Question","65C254","","","Green","")
+
 
 " Spell Checking
 
