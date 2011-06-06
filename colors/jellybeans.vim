@@ -365,10 +365,10 @@ hi! link diffAdded String
 
 " VimDiff
 
-call s:X("DiffAdd","D2EBBE","437019","","Black","DarkGreen")
+call s:X("DiffAdd","D2EBBE","437019","","White","DarkGreen")
 call s:X("DiffDelete","40000A","700009","","DarkRed","DarkRed")
-call s:X("DiffChange","","2B5B77","","Black","DarkMagenta")
-call s:X("DiffText","8fbfdc","000000","reverse","DarkRed","")
+call s:X("DiffChange","","2B5B77","","White","DarkBlue")
+call s:X("DiffText","8fbfdc","000000","reverse","Yellow","")
 
 " PHP
 
@@ -439,10 +439,7 @@ if !s:low_color
   hi Folded ctermbg=236
   hi FoldColumn ctermbg=236
   hi SignColumn ctermbg=236
-  hi DiffAdd ctermbg=22
-  hi DiffDelete ctermbg=52
-  hi DiffChange ctermbg=17
-  hi DiffText ctermbg=19
+  hi DiffText ctermfg=81
 endif
 
 " delete functions {{{
