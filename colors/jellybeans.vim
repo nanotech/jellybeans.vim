@@ -413,6 +413,10 @@ hi! link javaScriptRegexpString rubyRegexp
 
 hi! link coffeeRegExp javaScriptRegexpString
 
+" Lua
+
+hi! link luaOperator Conditional
+
 " Debugger.vim
 call s:X("DbgCurrent","","771111","","DarkMagenta","")
 call s:X("DbgBreakPt","","111177","","DarkMagenta","")
