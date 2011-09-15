@@ -417,10 +417,6 @@ hi! link coffeeRegExp javaScriptRegexpString
 
 hi! link luaOperator Conditional
 
-" Debugger.vim
-call s:X("DbgCurrent","","771111","","DarkMagenta","")
-call s:X("DbgBreakPt","","111177","","DarkMagenta","")
-
 " C
 
 hi! link cOperator Constant
@@ -436,6 +432,11 @@ hi! link objcMethodName Identifier
 hi! link objcMethodArg Normal
 hi! link objcMessageName Identifier
 
+" Debugger.vim
+
+call s:X("DbgCurrent","DEEBFE","345FA8","","White","DarkBlue")
+call s:X("DbgBreakPt","","4F0037","","","DarkMagenta")
+
 " Plugins, etc.
 
 hi! link TagListFileName Directory
@@ -448,6 +449,7 @@ if !s:low_color
   hi FoldColumn ctermbg=236
   hi SignColumn ctermbg=236
   hi DiffText ctermfg=81
+  hi DbgBreakPt ctermbg=53
 endif
 
 " delete functions {{{
