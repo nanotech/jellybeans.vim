@@ -406,6 +406,7 @@ call s:X("rubyRegexpSpecial","a40073","","","Magenta","")
 call s:X("rubyPredefinedIdentifier","de5577","","","Red","")
 
 " JavaScript
+
 hi! link javaScriptValue Constant
 hi! link javaScriptRegexpString rubyRegexp
 
@@ -422,6 +423,7 @@ hi! link luaOperator Conditional
 hi! link cOperator Constant
 
 " Objective-C/Cocoa
+
 hi! link objcClass Type
 hi! link cocoaClass objcClass
 hi! link objcSubclass objcClass
