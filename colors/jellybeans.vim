@@ -290,36 +290,42 @@ endfun
 call s:X("Normal","e8e8d3","151515","","White","")
 set background=dark
 
-if version >= 700
-  call s:X("CursorLine","","1c1c1c","","","Black")
-  call s:X("CursorColumn","","1c1c1c","","","Black")
-  call s:X("MatchParen","ffffff","80a090","bold","","DarkCyan")
-
-  call s:X("TabLine","000000","b0b8c0","italic","","Black")
-  call s:X("TabLineFill","9098a0","","","","Black")
-  call s:X("TabLineSel","000000","f0f0f0","italic,bold","Black","White")
-
-  " Auto-completion
-  call s:X("Pmenu","ffffff","606060","","White","Black")
-  call s:X("PmenuSel","101010","eeeeee","","Black","White")
+if !exists("g:jellybeans_use_lowcolor_black") || g:jellybeans_use_lowcolor_black
+    let s:termBlack = "Black"
+else
+    let s:termBlack = "Grey"
 endif
 
-call s:X("Visual","","404040","","","Black")
+if version >= 700
+  call s:X("CursorLine","","1c1c1c","","",s:termBlack)
+  call s:X("CursorColumn","","1c1c1c","","",s:termBlack)
+  call s:X("MatchParen","ffffff","80a090","bold","","DarkCyan")
+
+  call s:X("TabLine","000000","b0b8c0","italic","",s:termBlack)
+  call s:X("TabLineFill","9098a0","","","",s:termBlack)
+  call s:X("TabLineSel","000000","f0f0f0","italic,bold",s:termBlack,"White")
+
+  " Auto-completion
+  call s:X("Pmenu","ffffff","606060","","White",s:termBlack)
+  call s:X("PmenuSel","101010","eeeeee","",s:termBlack,"White")
+endif
+
+call s:X("Visual","","404040","","",s:termBlack)
 call s:X("Cursor","","b0d0f0","","","")
 
-call s:X("LineNr","605958","151515","none","Black","")
+call s:X("LineNr","605958","151515","none",s:termBlack,"")
 call s:X("Comment","888888","","italic","Grey","")
-call s:X("Todo","808080","","bold","White","Black")
+call s:X("Todo","808080","","bold","White",s:termBlack)
 
-call s:X("StatusLine","000000","dddddd","italic","Black","White")
+call s:X("StatusLine","000000","dddddd","italic","","White")
 call s:X("StatusLineNC","ffffff","403c41","italic","White","Black")
-call s:X("VertSplit","777777","403c41","italic","Black","Black")
+call s:X("VertSplit","777777","403c41","italic",s:termBlack,s:termBlack)
 call s:X("WildMenu","f0a0c0","302028","","Magenta","")
 
-call s:X("Folded","a0a8b0","384048","italic","Black","")
-call s:X("FoldColumn","535D66","1f1f1f","","","Black")
-call s:X("SignColumn","777777","333333","","","Black")
-call s:X("ColorColumn","","000000","","","Black")
+call s:X("Folded","a0a8b0","384048","italic",s:termBlack,"")
+call s:X("FoldColumn","535D66","1f1f1f","","",s:termBlack)
+call s:X("SignColumn","777777","333333","","",s:termBlack)
+call s:X("ColorColumn","","000000","","",s:termBlack)
 
 call s:X("Title","70b950","","bold","Green","")
 
@@ -339,9 +345,9 @@ call s:X("PreProc","8fbfdc","","","LightBlue","")
 hi! link Operator Normal
 
 call s:X("Type","ffb964","","","Yellow","")
-call s:X("NonText","606060","151515","","Black","")
+call s:X("NonText","606060","151515","",s:termBlack,"")
 
-call s:X("SpecialKey","444444","1c1c1c","","Black","")
+call s:X("SpecialKey","444444","1c1c1c","",s:termBlack,"")
 
 call s:X("Search","f0a0c0","302028","underline","Magenta","")
 
