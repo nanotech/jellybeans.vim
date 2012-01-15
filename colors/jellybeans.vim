@@ -446,6 +446,14 @@ hi! link objcMessageName Identifier
 call s:X("DbgCurrent","DEEBFE","345FA8","","White","DarkBlue")
 call s:X("DbgBreakPt","","4F0037","","","DarkMagenta")
 
+" vim-indent-guides
+
+if !exists("g:indent_guides_auto_colors")
+  let g:indent_guides_auto_colors = 0
+endif
+call s:X("IndentGuidesOdd","","202020","","","")
+call s:X("IndentGuidesEven","","1c1c1c","","","")
+
 " Plugins, etc.
 
 hi! link TagListFileName Directory
