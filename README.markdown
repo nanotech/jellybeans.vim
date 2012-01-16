@@ -11,6 +11,10 @@ If you use Apple’s pre-10.7 Terminal.app, the TerminalColours plugin
 ([Leopard][tc-leopard], [Snow Leopard][tc-snowleopard]) will allow you
 to change the default colors.
 
+If you can't change your terminal's colors, add
+`let g:jellybeans_use_lowcolor_black = 0` to your .vimrc to render
+'black' text as grey.
+
 This script is [vimscript #2555][vimscript] at Vim.org.
 
 ### Screenshots
