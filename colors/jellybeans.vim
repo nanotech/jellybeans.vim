@@ -436,6 +436,7 @@ hi! link cocoaClass objcClass
 hi! link objcSubclass objcClass
 hi! link objcSuperclass objcClass
 hi! link objcDirective rubyClass
+hi! link objcStatement Constant
 hi! link cocoaFunction Function
 hi! link objcMethodName Identifier
 hi! link objcMethodArg Normal
