@@ -12,12 +12,14 @@
 " File:         jellybeans.vim
 " Maintainer:   NanoTech <http://nanotech.nanotechcorp.net/>
 " Version:      1.5~git
-" Last Change:  April 11th, 2011
-" Contributors: Daniel Herbert <http://pocket-ninja.com>,
+" Last Change:  January 15th, 2012
+" Contributors: Daniel Herbert <http://pocket-ninja.com/>,
 "               Henry So, Jr. <henryso@panix.com>,
-"               David Liang <bmdavll at gmail dot com>
+"               David Liang <bmdavll at gmail dot com>,
+"               Rich Healey (richoH),
+"               Andrew Wong (w0ng)
 "
-" Copyright (c) 2009-2011 NanoTech
+" Copyright (c) 2009-2012 NanoTech
 "
 " Permission is hereby granted, free of charge, to any person obtaining a copy
 " of this software and associated documentation files (the "Software"), to deal
