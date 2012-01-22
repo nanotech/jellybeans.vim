@@ -1,5 +1,5 @@
-jellybeans.vim
-==============
+jellybeans
+==========
 
 A colorful, dark color scheme, inspired by [ir_black][] and [twilight][].
 
