@@ -476,6 +476,8 @@ if !s:low_color
   hi DiffText ctermfg=81
   hi Normal ctermbg=233
   hi DbgBreakPt ctermbg=53
+  hi IndentGuidesOdd ctermbg=235
+  hi IndentGuidesEven ctermbg=234
 endif
 
 " delete functions {{{
