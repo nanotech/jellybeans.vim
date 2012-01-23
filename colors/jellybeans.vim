@@ -390,6 +390,10 @@ hi! link phpBoolean Constant
 hi! link phpNull Constant
 hi! link phpArrayPair Operator
 
+" Python
+
+hi! link pythonOperator Statement
+
 " Ruby
 
 hi! link rubySharpBang Comment
