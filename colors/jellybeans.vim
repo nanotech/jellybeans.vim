@@ -16,7 +16,7 @@
 " Contributors: Daniel Herbert <http://pocket-ninja.com/>,
 "               Henry So, Jr. <henryso@panix.com>,
 "               David Liang <bmdavll at gmail dot com>,
-"               Rich Healey (richoH),
+"               Rich Healey (richo),
 "               Andrew Wong (w0ng)
 "
 " Copyright (c) 2009-2012 NanoTech
