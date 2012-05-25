@@ -470,6 +470,9 @@ call s:X("IndentGuidesEven","","1b1b1b","","","")
 hi! link TagListFileName Directory
 call s:X("PreciseJumpTarget","B9ED67","405026","","White","Green")
 
+if !exists("g:jellybeans_background_color_256")
+  let g:jellybeans_background_color_256=233
+end
 " Manual overrides for 256-color terminals. Dark colors auto-map badly.
 if !s:low_color
   hi StatusLineNC ctermbg=235
@@ -479,10 +482,10 @@ if !s:low_color
   hi CursorColumn ctermbg=234
   hi CursorLine ctermbg=234
   hi SpecialKey ctermbg=234
-  hi NonText ctermbg=233
-  hi LineNr ctermbg=233
+  exec "hi NonText ctermbg=".g:jellybeans_background_color_256
+  exec "hi LineNr ctermbg=".g:jellybeans_background_color_256
   hi DiffText ctermfg=81
-  hi Normal ctermbg=233
+  exec "hi Normal ctermbg=".g:jellybeans_background_color_256
   hi DbgBreakPt ctermbg=53
   hi IndentGuidesOdd ctermbg=235
   hi IndentGuidesEven ctermbg=234
