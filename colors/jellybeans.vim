@@ -289,7 +289,11 @@ fun! s:X(group, fg, bg, attr, lcfg, lcbg)
 endfun
 " }}}
 
-call s:X("Normal","e8e8d3","151515","","White","")
+if !exists("g:jellybeans_background_color")
+  let g:jellybeans_background_color = "151515"
+end
+
+call s:X("Normal","e8e8d3",g:jellybeans_background_color,"","White","")
 set background=dark
 
 if !exists("g:jellybeans_use_lowcolor_black") || g:jellybeans_use_lowcolor_black
@@ -315,7 +319,7 @@ endif
 call s:X("Visual","","404040","","",s:termBlack)
 call s:X("Cursor","","b0d0f0","","","")
 
-call s:X("LineNr","605958","151515","none",s:termBlack,"")
+call s:X("LineNr","605958",g:jellybeans_background_color,"none",s:termBlack,"")
 call s:X("Comment","888888","","italic","Grey","")
 call s:X("Todo","808080","","bold","White",s:termBlack)
 
@@ -347,7 +351,7 @@ call s:X("PreProc","8fbfdc","","","LightBlue","")
 hi! link Operator Normal
 
 call s:X("Type","ffb964","","","Yellow","")
-call s:X("NonText","606060","151515","",s:termBlack,"")
+call s:X("NonText","606060",g:jellybeans_background_color,"",s:termBlack,"")
 
 call s:X("SpecialKey","444444","1c1c1c","",s:termBlack,"")
 
