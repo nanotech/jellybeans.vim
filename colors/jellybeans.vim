@@ -437,6 +437,7 @@ hi! link luaOperator Conditional
 
 " C
 
+hi! link cFormat Identifier
 hi! link cOperator Constant
 
 " Objective-C/Cocoa
