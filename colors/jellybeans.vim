@@ -280,11 +280,11 @@ fun! s:X(group, fg, bg, attr, lcfg, lcbg)
   if a:attr == ""
     exec "hi ".a:group." gui=none cterm=none"
   else
-    let noitalic = join(filter(split(a:attr, ","), "v:val !=? 'italic'"), ",")
-    if empty(noitalic)
-      let noitalic = "none"
+    let l:noitalic = join(filter(split(a:attr, ","), "v:val !=? 'italic'"), ",")
+    if empty(l:noitalic)
+      let l:noitalic = "none"
     endif
-    exec "hi ".a:group." gui=".a:attr." cterm=".noitalic
+    exec "hi ".a:group." gui=".a:attr." cterm=".l:noitalic
   endif
 endfun
 " }}}
