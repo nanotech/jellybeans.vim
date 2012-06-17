@@ -12,13 +12,13 @@
 " File:         jellybeans.vim
 " URL:          github.com/nanotech/jellybeans.vim
 " Scripts URL:  vim.org/scripts/script.php?script_id=2555
-" Maintainer:   NanoTech <http://nanotech.nanotechcorp.net/>
+" Maintainer:   NanoTech (nanotech.nanotechcorp.net)
 " Version:      1.6~git
 " Last Change:  January 15th, 2012
-" Contributors: Daniel Herbert <http://pocket-ninja.com/>,
-"               Henry So, Jr. <henryso@panix.com>,
-"               David Liang <bmdavll at gmail dot com>,
-"               Rich Healey (richo),
+" Contributors: Daniel Herbert (pocketninja)
+"               Henry So, Jr. <henryso@panix.com>
+"               David Liang <bmdavll at gmail dot com>
+"               Rich Healey (richo)
 "               Andrew Wong (w0ng)
 "
 " Copyright (c) 2009-2012 NanoTech
