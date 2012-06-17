@@ -17,9 +17,9 @@ If you can't change your terminal's colors, add
 
 This script is [vimscript #2555][vimscript] at Vim.org.
 
-### Options
+## Options
 
-#### Custom Highlights
+### Custom Highlights
 
 If you prefer slightly different colors from what Jellybeans defines,
 you can set `g:jellybeans_overrides` in your .vimrc to a dictionary of
@@ -40,7 +40,7 @@ If you can pick better colors than the approximator, specify them
 in the `256ctermfg` and `256ctermbg` parameters to override
 its choices.
 
-### Screenshots
+## Screenshots
 
 ![][preview-ss]
 
