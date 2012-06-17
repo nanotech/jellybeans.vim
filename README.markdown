@@ -9,6 +9,8 @@ those in `ansi-term-colors.txt` for best results.
 
 This script is [vimscript #2555][vimscript] at Vim.org.
 
+Scroll down for [screenshots][ss-anchor]!
+
 ## Options
 
 ### Custom Highlights
@@ -60,3 +62,4 @@ change the default colors.
 [tc-leopard]: http://ciaranwal.sh/2007/11/01/customising-colours-in-leopard-terminal
 [tc-snowleopard]: http://github.com/timmfin/terminalcolours
 [preview-ss]: http://nanotech.nanotechcorp.net/downloads/jellybeans-preview.png
+[ss-anchor]: #screenshots
