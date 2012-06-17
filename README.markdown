@@ -17,6 +17,29 @@ If you can't change your terminal's colors, add
 
 This script is [vimscript #2555][vimscript] at Vim.org.
 
+### Options
+
+#### Custom Highlights
+
+If you prefer slightly different colors from what Jellybeans defines,
+you can set `g:jellybeans_overrides` in your .vimrc to a dictionary of
+custom highlighting parameters:
+
+    let g:jellybeans_overrides = {
+    \    'Todo': { 'guifg': '303030', 'guibg': 'f0f000',
+    \              'ctermfg': 'Black', 'ctermbg': 'Yellow',
+    \              'attr': 'bold' },
+    \}
+
+This removes the need to edit Jellybeans directly, simplifying
+upgrades. In addition, RGB colors specified this way are run through
+the same color approximation algorithm that the core theme uses, so
+your colors work just as well in 256-color terminals.
+
+If you can pick better colors than the approximator, specify them
+in the `256ctermfg` and `256ctermbg` parameters to override
+its choices.
+
 ### Screenshots
 
 ![][preview-ss]
