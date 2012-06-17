@@ -10,6 +10,8 @@
 "         "A colorful, dark color scheme for Vim."
 "
 " File:         jellybeans.vim
+" URL:          github.com/nanotech/jellybeans.vim
+" Scripts URL:  vim.org/scripts/script.php?script_id=2555
 " Maintainer:   NanoTech <http://nanotech.nanotechcorp.net/>
 " Version:      1.6~git
 " Last Change:  January 15th, 2012
