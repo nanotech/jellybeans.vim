@@ -500,6 +500,28 @@ if !s:low_color
   hi IndentGuidesEven ctermbg=234
 endif
 
+if exists("g:jellybeans_overrides")
+  fun! s:load_colors(defs)
+    for [l:group, l:v] in items(a:defs)
+      call s:X(l:group, get(l:v, 'guifg', ''), get(l:v, 'guibg', ''),
+      \                 get(l:v, 'attr', ''),
+      \                 get(l:v, 'ctermfg', ''), get(l:v, 'ctermbg', ''))
+      if !s:low_color
+        for l:prop in ['ctermfg', 'ctermbg']
+          let l:override_key = '256'.l:prop
+          if has_key(l:v, l:override_key)
+            exec "hi ".l:group." ".l:prop."=".l:v[l:override_key]
+          endif
+        endfor
+      endif
+      unlet l:group
+      unlet l:v
+    endfor
+  endfun
+  call s:load_colors(g:jellybeans_overrides)
+  delf s:load_colors
+endif
+
 " delete functions {{{
 delf s:X
 delf s:rgb
