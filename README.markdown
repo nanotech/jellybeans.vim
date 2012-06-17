@@ -7,14 +7,6 @@ Designed primarily for a graphical Vim, but includes support for 256, 88, 16,
 and 8 color terminals. On a 16 or 8 color terminal, replace its colors with
 those in `ansi-term-colors.txt` for best results.
 
-If you use Apple’s pre-10.7 Terminal.app, the TerminalColours plugin
-([Leopard][tc-leopard], [Snow Leopard][tc-snowleopard]) will allow you
-to change the default colors.
-
-If you can't change your terminal's colors, add
-`let g:jellybeans_use_lowcolor_black = 0` to your .vimrc to render
-'black' text as grey.
-
 This script is [vimscript #2555][vimscript] at Vim.org.
 
 ## Options
@@ -39,6 +31,23 @@ your colors work just as well in 256-color terminals.
 If you can pick better colors than the approximator, specify them
 in the `256ctermfg` and `256ctermbg` parameters to override
 its choices.
+
+### Low-Color Black (16 and 8 color terminals)
+
+Since the background on a dark terminal is usually black already,
+Jellybeans appropriates the black ANSI color as a dark grey and
+uses no color when it really wants black.
+
+If you can’t or don’t want to change your terminal’s color
+mappings, add
+
+    let g:jellybeans_use_lowcolor_black = 0
+
+to your .vimrc to render “black” text as Vim’s grey (ANSI white).
+
+Users of Apple’s pre-10.7 Terminal.app can use the TerminalColours
+plugin ([Leopard][tc-leopard], [Snow Leopard][tc-snowleopard]) to
+change the default colors.
 
 ## Screenshots
 
