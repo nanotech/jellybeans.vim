@@ -402,6 +402,7 @@ hi! link phpQuoteDouble StringDelimiter
 hi! link phpBoolean Constant
 hi! link phpNull Constant
 hi! link phpArrayPair Operator
+hi! link phpVarSelector Identifier
 
 " Python
 
