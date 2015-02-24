@@ -488,6 +488,9 @@ hi! link htmlTagName htmlTag
 hi! link xmlTag Statement
 hi! link xmlEndTag xmlTag
 hi! link xmlTagName xmlTag
+hi! link xmlEqual xmlTag
+hi! link xmlEntity Special
+hi! link xmlEntityPunct xmlEntity
 
 " Debugger.vim
 
