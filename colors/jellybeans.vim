@@ -491,6 +491,9 @@ hi! link xmlTagName xmlTag
 hi! link xmlEqual xmlTag
 hi! link xmlEntity Special
 hi! link xmlEntityPunct xmlEntity
+hi! link xmlDocTypeDecl PreProc
+hi! link xmlDocTypeKeyword PreProc
+hi! link xmlProcessingDelim xmlAttrib
 
 " Debugger.vim
 
