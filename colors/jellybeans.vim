@@ -372,6 +372,7 @@ hi! link Error ErrorMsg
 hi! link MoreMsg Special
 call s:X("Question","65C254","","","Green","")
 
+call s:X("Conceal","902020","","bold","DarkRed","")
 
 " Spell Checking
 
