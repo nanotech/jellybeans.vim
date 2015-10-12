@@ -376,10 +376,10 @@ call s:X("Conceal","902020","","bold","DarkRed","")
 
 " Spell Checking
 
-call s:X("SpellBad","","902020","underline","","DarkRed")
-call s:X("SpellCap","","0000df","underline","","Blue")
-call s:X("SpellRare","","540063","underline","","DarkMagenta")
-call s:X("SpellLocal","","2D7067","underline","","Green")
+call s:X("SpellBad","","902020","underline","DarkRed","")
+call s:X("SpellCap","","0000df","underline","Blue","")
+call s:X("SpellRare","","540063","underline","DarkMagenta","")
+call s:X("SpellLocal","","2D7067","underline","Green","")
 
 " Diff
 
