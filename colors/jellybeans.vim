@@ -259,6 +259,10 @@ fun! s:rgb(rgb)
   return s:color(l:r, l:g, l:b)
 endfun
 
+if !exists("g:jellybeans_term_italics")
+  let g:jellybeans_term_italics = 0
+end
+
 " sets the highlighting for the given group
 fun! s:X(group, fg, bg, attr, lcfg, lcbg)
   if s:low_color
@@ -288,11 +292,15 @@ fun! s:X(group, fg, bg, attr, lcfg, lcbg)
   if a:attr == ""
     exec "hi ".a:group." gui=none cterm=none"
   else
-    let l:noitalic = join(filter(split(a:attr, ","), "v:val !=? 'italic'"), ",")
-    if empty(l:noitalic)
-      let l:noitalic = "none"
+    if g:jellybeans_term_italics
+      exec "hi ".a:group." gui=".a:attr." cterm=".a:attr
+    else
+      let l:noitalic = join(filter(split(a:attr, ","), "v:val !=? 'italic'"), ",")
+      if empty(l:noitalic)
+        let l:noitalic = "none"
+      endif
+      exec "hi ".a:group." gui=".a:attr." cterm=".l:noitalic
     endif
-    exec "hi ".a:group." gui=".a:attr." cterm=".l:noitalic
   endif
 endfun
 " }}}
