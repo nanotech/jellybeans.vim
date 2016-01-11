@@ -460,6 +460,11 @@ hi! link erlangFunction rubyPredefinedIdentifier
 hi! link erlangDirective Statement
 hi! link erlangNode Identifier
 
+" Elixir
+
+hi! link elixirAtom rubySymbol
+
+
 " JavaScript
 
 hi! link javaScriptValue Constant
