@@ -288,11 +288,15 @@ fun! s:X(group, fg, bg, attr, lcfg, lcbg)
   if a:attr == ""
     exec "hi ".a:group." gui=none cterm=none"
   else
-    let l:noitalic = join(filter(split(a:attr, ","), "v:val !=? 'italic'"), ",")
-    if empty(l:noitalic)
-      let l:noitalic = "none"
+    if !exists("g:jellybeans_enable_italic_on_term") || !g:jellybeans_enable_italic_on_term
+      let l:noitalic = join(filter(split(a:attr, ","), "v:val !=? 'italic'"), ",")
+      if empty(l:noitalic)
+        let l:noitalic = "none"
+      endif
+      exec "hi ".a:group." gui=".a:attr." cterm=".l:noitalic
+    else
+      exec "hi ".a:group." gui=".a:attr." cterm=".a:attr
     endif
-    exec "hi ".a:group." gui=".a:attr." cterm=".l:noitalic
   endif
 endfun
 " }}}
@@ -305,9 +309,9 @@ call s:X("Normal","e8e8d3",g:jellybeans_background_color,"","White","")
 set background=dark
 
 if !exists("g:jellybeans_use_lowcolor_black") || g:jellybeans_use_lowcolor_black
-    let s:termBlack = "Black"
+  let s:termBlack = "Black"
 else
-    let s:termBlack = "Grey"
+  let s:termBlack = "Grey"
 endif
 
 if version >= 700
@@ -520,8 +524,8 @@ if exists("g:jellybeans_overrides")
   fun! s:load_colors(defs)
     for [l:group, l:v] in items(a:defs)
       call s:X(l:group, get(l:v, 'guifg', ''), get(l:v, 'guibg', ''),
-      \                 get(l:v, 'attr', ''),
-      \                 get(l:v, 'ctermfg', ''), get(l:v, 'ctermbg', ''))
+            \                 get(l:v, 'attr', ''),
+            \                 get(l:v, 'ctermfg', ''), get(l:v, 'ctermbg', ''))
       if !s:low_color
         for l:prop in ['ctermfg', 'ctermbg']
           let l:override_key = '256'.l:prop
