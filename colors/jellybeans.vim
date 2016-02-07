@@ -63,6 +63,26 @@ else
   let s:low_color = 1
 endif
 
+" Configuration Variables:
+" - g:jellybeans_background_color
+" - g:jellybeans_background_color_256
+" - g:jellybeans_overrides
+" - g:jellybeans_use_lowcolor_black
+
+if !exists("g:jellybeans_background_color")
+  let g:jellybeans_background_color = "151515"
+end
+
+if !exists("g:jellybeans_background_color_256")
+  let g:jellybeans_background_color_256 = 233
+end
+
+if !exists("g:jellybeans_use_lowcolor_black") || g:jellybeans_use_lowcolor_black
+  let s:termBlack = "Black"
+else
+  let s:termBlack = "Grey"
+endif
+
 " Color approximation functions by Henry So, Jr. and David Liang {{{
 " Added to jellybeans.vim by Daniel Herbert
 
@@ -297,18 +317,8 @@ fun! s:X(group, fg, bg, attr, lcfg, lcbg)
 endfun
 " }}}
 
-if !exists("g:jellybeans_background_color")
-  let g:jellybeans_background_color = "151515"
-end
-
 call s:X("Normal","e8e8d3",g:jellybeans_background_color,"","White","")
 set background=dark
-
-if !exists("g:jellybeans_use_lowcolor_black") || g:jellybeans_use_lowcolor_black
-    let s:termBlack = "Black"
-else
-    let s:termBlack = "Grey"
-endif
 
 if version >= 700
   call s:X("CursorLine","","1c1c1c","","",s:termBlack)
@@ -513,9 +523,6 @@ call s:X("IndentGuidesEven","","1b1b1b","","","")
 hi! link TagListFileName Directory
 call s:X("PreciseJumpTarget","B9ED67","405026","","White","Green")
 
-if !exists("g:jellybeans_background_color_256")
-  let g:jellybeans_background_color_256=233
-end
 " Manual overrides for 256-color terminals. Dark colors auto-map badly.
 if !s:low_color
   hi StatusLineNC ctermbg=235
