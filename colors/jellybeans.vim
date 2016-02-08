@@ -68,6 +68,7 @@ endif
 " - g:jellybeans_background_color_256
 " - g:jellybeans_overrides
 " - g:jellybeans_use_lowcolor_black
+" - g:jellybeans_use_term_italics
 
 if !exists("g:jellybeans_background_color")
   let g:jellybeans_background_color = "151515"
@@ -305,15 +306,22 @@ fun! s:X(group, fg, bg, attr, lcfg, lcbg)
     endif
   endif
 
-  if a:attr == ""
-    exec "hi ".a:group." gui=none cterm=none"
+  if empty(a:attr)
+    let l:attr = "none"
   else
-    let l:noitalic = join(filter(split(a:attr, ","), "v:val !=? 'italic'"), ",")
-    if empty(l:noitalic)
-      let l:noitalic = "none"
-    endif
-    exec "hi ".a:group." gui=".a:attr." cterm=".l:noitalic
+    let l:attr = a:attr
   endif
+
+  if exists("g:jellybeans_use_term_italics") && g:jellybeans_use_term_italics
+    let l:cterm_attr = l:attr
+  else
+    let l:cterm_attr = join(filter(split(l:attr, ","), "v:val !=? 'italic'"), ",")
+    if empty(l:cterm_attr)
+      let l:cterm_attr = "none"
+    endif
+  endif
+
+  exec "hi ".a:group." gui=".l:attr." cterm=".l:cterm_attr
 endfun
 " }}}
 
