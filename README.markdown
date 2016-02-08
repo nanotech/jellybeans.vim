@@ -51,6 +51,17 @@ Users of Apple’s pre-10.7 Terminal.app can use the TerminalColours
 plugin ([Leopard][tc-leopard], [Snow Leopard][tc-snowleopard]) to
 change the default colors.
 
+### Italics
+
+Jellybeans disables italics in terminal Vim by default, as some
+terminals do other things with the text's colors instead of
+actually italicizing the text. If your terminal does fully
+support italics, add
+
+    let g:jellybeans_use_term_italics = 1
+
+to your .vimrc to enable italics in terminal Vim.
+
 ## Screenshots
 
 ![][preview-ss]
