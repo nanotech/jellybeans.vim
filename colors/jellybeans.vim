@@ -65,17 +65,12 @@ endif
 
 " Configuration Variables:
 " - g:jellybeans_background_color
-" - g:jellybeans_background_color_256
 " - g:jellybeans_overrides
 " - g:jellybeans_use_lowcolor_black
 " - g:jellybeans_use_term_italics
 
 if !exists("g:jellybeans_background_color")
   let g:jellybeans_background_color = "151515"
-end
-
-if !exists("g:jellybeans_background_color_256")
-  let g:jellybeans_background_color_256 = 233
 end
 
 if !exists("g:jellybeans_use_lowcolor_black") || g:jellybeans_use_lowcolor_black
@@ -297,12 +292,18 @@ fun! s:X(group, fg, bg, attr, lcfg, lcbg)
     let l:fge = empty(a:fg)
     let l:bge = empty(a:bg)
 
+    if a:bg == g:jellybeans_background_color
+      let l:ctermbg = 'NONE'
+    else
+      let l:ctermbg = s:rgb(a:bg)
+    endif
+
     if !l:fge && !l:bge
-      exec "hi ".a:group." guifg=#".a:fg." guibg=#".a:bg." ctermfg=".s:rgb(a:fg)." ctermbg=".s:rgb(a:bg)
+      exec "hi ".a:group." guifg=#".a:fg." guibg=#".a:bg." ctermfg=".s:rgb(a:fg)." ctermbg=".l:ctermbg
     elseif !l:fge && l:bge
       exec "hi ".a:group." guifg=#".a:fg." guibg=NONE ctermfg=".s:rgb(a:fg)." ctermbg=NONE"
     elseif l:fge && !l:bge
-      exec "hi ".a:group." guifg=NONE guibg=#".a:bg." ctermfg=NONE ctermbg=".s:rgb(a:bg)
+      exec "hi ".a:group." guifg=NONE guibg=#".a:bg." ctermfg=NONE ctermbg=".l:ctermbg
     endif
   endif
 
@@ -548,10 +549,7 @@ if !s:low_color
   hi CursorColumn ctermbg=234
   hi CursorLine ctermbg=234
   hi SpecialKey ctermbg=234
-  exec "hi NonText ctermbg=".g:jellybeans_background_color_256
-  exec "hi LineNr ctermbg=".g:jellybeans_background_color_256
   hi DiffText ctermfg=81
-  exec "hi Normal ctermbg=".g:jellybeans_background_color_256
   hi DbgBreakPt ctermbg=53
   hi IndentGuidesOdd ctermbg=235
   hi IndentGuidesEven ctermbg=234
