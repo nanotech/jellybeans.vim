@@ -64,15 +64,37 @@ else
 endif
 
 " Configuration Variables:
-" - g:jellybeans_background_color
 " - g:jellybeans_overrides
 " - g:jellybeans_use_lowcolor_black
 " - g:jellybeans_use_term_background_color
 " - g:jellybeans_use_term_italics
 
-if !exists("g:jellybeans_background_color")
-  let g:jellybeans_background_color = "151515"
-end
+let s:background_color = "151515"
+
+" Backwards compatibility
+if exists("g:jellybeans_background_color") || exists("g:jellybeans_background_color_256")
+  if !exists("g:jellybeans_overrides")
+    let g:jellybeans_overrides = {}
+  endif
+  if !has_key(g:jellybeans_overrides, "background")
+    let g:jellybeans_overrides["background"] = {}
+  endif
+
+  if exists("g:jellybeans_background_color")
+    let g:jellybeans_overrides["background"]["guibg"] = g:jellybeans_background_color
+  endif
+
+  if exists("g:jellybeans_background_color_256")
+    let g:jellybeans_overrides["background"]["256ctermbg"] = g:jellybeans_background_color_256
+  endif
+endif
+
+" Ensure that g:jellybeans_use_term_background_color = 0 works with overrides
+if exists("g:jellybeans_overrides")
+  \ && has_key(g:jellybeans_overrides, "background")
+  \ && has_key(g:jellybeans_overrides["background"], "guibg")
+  let s:background_color = g:jellybeans_overrides["background"]["guibg"]
+endif
 
 if !exists("g:jellybeans_use_lowcolor_black") || g:jellybeans_use_lowcolor_black
   let s:termBlack = "Black"
@@ -304,7 +326,7 @@ fun! s:X(group, fg, bg, attr, lcfg, lcbg)
     let l:fge = empty(a:fg)
     let l:bge = empty(a:bg)
 
-    if !g:jellybeans_use_term_background_color && a:bg == g:jellybeans_background_color
+    if !g:jellybeans_use_term_background_color && a:bg == s:background_color
       let l:ctermbg = 'NONE'
     else
       let l:ctermbg = s:rgb(a:bg)
@@ -338,7 +360,7 @@ fun! s:X(group, fg, bg, attr, lcfg, lcbg)
 endfun
 " }}}
 
-call s:X("Normal","e8e8d3",g:jellybeans_background_color,"","White","")
+call s:X("Normal","e8e8d3",s:background_color,"","White","")
 set background=dark
 
 if version >= 700
@@ -356,9 +378,9 @@ if version >= 700
 endif
 
 call s:X("Visual","","404040","","",s:termBlack)
-call s:X("Cursor",g:jellybeans_background_color,"b0d0f0","","","")
+call s:X("Cursor",s:background_color,"b0d0f0","","","")
 
-call s:X("LineNr","605958",g:jellybeans_background_color,"none",s:termBlack,"")
+call s:X("LineNr","605958",s:background_color,"none",s:termBlack,"")
 call s:X("CursorLineNr","ccc5c4","","none","White","")
 call s:X("Comment","888888","","italic","Grey","")
 call s:X("Todo","c7c7c7","","bold","White",s:termBlack)
@@ -391,7 +413,7 @@ call s:X("PreProc","8fbfdc","","","LightBlue","")
 hi! link Operator Structure
 
 call s:X("Type","ffb964","","","Yellow","")
-call s:X("NonText","606060",g:jellybeans_background_color,"",s:termBlack,"")
+call s:X("NonText","606060",s:background_color,"",s:termBlack,"")
 
 call s:X("SpecialKey","444444","1c1c1c","",s:termBlack,"")
 
@@ -586,27 +608,37 @@ if exists("g:jellybeans_overrides")
       return substitute(l:color, "^#", "", "")
     endif
   endfun
+  fun! s:load_color_def(group, def)
+    call s:X(a:group, get(a:def, "guifg", s:current_color(a:group, "fg", "gui")),
+    \                 get(a:def, "guibg", s:current_color(a:group, "bg", "gui")),
+    \                 get(a:def, "attr", s:current_attr(a:group)),
+    \                 get(a:def, "ctermfg", s:current_color(a:group, "fg", "cterm")),
+    \                 get(a:def, "ctermbg", s:current_color(a:group, "bg", "cterm")))
+    if !s:low_color
+      for l:prop in ["ctermfg", "ctermbg"]
+        let l:override_key = "256".l:prop
+        if has_key(a:def, l:override_key)
+          exec "hi ".a:group." ".l:prop."=".a:def[l:override_key]
+        endif
+      endfor
+    endif
+  endfun
   fun! s:load_colors(defs)
-    for [l:group, l:v] in items(a:defs)
-      call s:X(l:group, get(l:v, 'guifg', s:current_color(l:group, 'fg', 'gui')),
-      \                 get(l:v, 'guibg', s:current_color(l:group, 'bg', 'gui')),
-      \                 get(l:v, 'attr', s:current_attr(l:group)),
-      \                 get(l:v, 'ctermfg', s:current_color(l:group, 'fg', 'cterm')),
-      \                 get(l:v, 'ctermbg', s:current_color(l:group, 'bg', 'cterm')))
-      if !s:low_color
-        for l:prop in ['ctermfg', 'ctermbg']
-          let l:override_key = '256'.l:prop
-          if has_key(l:v, l:override_key)
-            exec "hi ".l:group." ".l:prop."=".l:v[l:override_key]
-          endif
-        endfor
+    for [l:group, l:def] in items(a:defs)
+      if l:group == "background"
+        call s:load_color_def("LineNr", l:def)
+        call s:load_color_def("NonText", l:def)
+        call s:load_color_def("Normal", l:def)
+      else
+        call s:load_color_def(l:group, l:def)
       endif
       unlet l:group
-      unlet l:v
+      unlet l:def
     endfor
   endfun
   call s:load_colors(g:jellybeans_overrides)
   delf s:load_colors
+  delf s:load_color_def
   delf s:current_color
   delf s:current_attr
 endif
