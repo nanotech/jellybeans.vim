@@ -67,6 +67,7 @@ endif
 " - g:jellybeans_background_color
 " - g:jellybeans_overrides
 " - g:jellybeans_use_lowcolor_black
+" - g:jellybeans_use_term_background_color
 " - g:jellybeans_use_term_italics
 
 if !exists("g:jellybeans_background_color")
@@ -78,6 +79,10 @@ if !exists("g:jellybeans_use_lowcolor_black") || g:jellybeans_use_lowcolor_black
 else
   let s:termBlack = "Grey"
 endif
+
+if !exists("g:jellybeans_use_term_background_color")
+  let g:jellybeans_use_term_background_color = 0
+end
 
 " Color approximation functions by Henry So, Jr. and David Liang {{{
 " Added to jellybeans.vim by Daniel Herbert
@@ -292,7 +297,7 @@ fun! s:X(group, fg, bg, attr, lcfg, lcbg)
     let l:fge = empty(a:fg)
     let l:bge = empty(a:bg)
 
-    if a:bg == g:jellybeans_background_color
+    if !g:jellybeans_use_term_background_color && a:bg == g:jellybeans_background_color
       let l:ctermbg = 'NONE'
     else
       let l:ctermbg = s:rgb(a:bg)
