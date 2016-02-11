@@ -81,7 +81,14 @@ else
 endif
 
 if !exists("g:jellybeans_use_term_background_color")
-  let g:jellybeans_use_term_background_color = 0
+  " OS X's Terminal.app and iTerm apply transparency to all
+  " backgrounds. Other terminals tend to only apply transparency
+  " to the default unhighlighted background.
+  "
+  " has("mac") only detects MacVim, not Apple's /usr/bin/vim.
+  " We could check system("uname"), but then we're calling
+  " external programs from a colorscheme.
+  let g:jellybeans_use_term_background_color = has("mac")
 end
 
 " Color approximation functions by Henry So, Jr. and David Liang {{{
