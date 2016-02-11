@@ -568,11 +568,31 @@ if !s:low_color
 endif
 
 if exists("g:jellybeans_overrides")
+  fun! s:current_attr(group)
+    let l:synid = synIDtrans(hlID(a:group))
+    let l:attrs = []
+    for l:attr in ["bold", "italic", "reverse", "standout", "underline", "undercurl"]
+      if synIDattr(l:synid, l:attr, "gui") == 1
+        call add(l:attrs, l:attr)
+      endif
+    endfor
+    return join(l:attrs, ",")
+  endfun
+  fun! s:current_color(group, what, mode)
+    let l:color = synIDattr(synIDtrans(hlID(a:group)), a:what, a:mode)
+    if l:color == -1
+      return ""
+    else
+      return substitute(l:color, "^#", "", "")
+    endif
+  endfun
   fun! s:load_colors(defs)
     for [l:group, l:v] in items(a:defs)
-      call s:X(l:group, get(l:v, 'guifg', ''), get(l:v, 'guibg', ''),
-      \                 get(l:v, 'attr', ''),
-      \                 get(l:v, 'ctermfg', ''), get(l:v, 'ctermbg', ''))
+      call s:X(l:group, get(l:v, 'guifg', s:current_color(l:group, 'fg', 'gui')),
+      \                 get(l:v, 'guibg', s:current_color(l:group, 'bg', 'gui')),
+      \                 get(l:v, 'attr', s:current_attr(l:group)),
+      \                 get(l:v, 'ctermfg', s:current_color(l:group, 'fg', 'cterm')),
+      \                 get(l:v, 'ctermbg', s:current_color(l:group, 'bg', 'cterm')))
       if !s:low_color
         for l:prop in ['ctermfg', 'ctermbg']
           let l:override_key = '256'.l:prop
@@ -587,6 +607,8 @@ if exists("g:jellybeans_overrides")
   endfun
   call s:load_colors(g:jellybeans_overrides)
   delf s:load_colors
+  delf s:current_color
+  delf s:current_attr
 endif
 
 " delete functions {{{
