@@ -268,6 +268,11 @@ endfun
 
 " returns the palette index to approximate the given R/G/B color levels
 fun! s:color(r, g, b)
+  " map greys directly (see xterm's 256colres.pl)
+  if &t_Co == 256 && a:r == a:g && a:g == a:b
+    return float2nr(round(a:r - 8) / 10.0) + 232
+  endif
+
   " get the closest grey
   let l:gx = s:grey_number(a:r)
   let l:gy = s:grey_number(a:g)
@@ -578,11 +583,6 @@ call s:X("PreciseJumpTarget","B9ED67","405026","","White","Green")
 if !s:low_color
   hi StatusLineNC ctermbg=235
   hi Folded ctermbg=236
-  hi FoldColumn ctermbg=234
-  hi SignColumn ctermbg=236
-  hi CursorColumn ctermbg=234
-  hi CursorLine ctermbg=234
-  hi SpecialKey ctermbg=234
   hi DiffText ctermfg=81
   hi DbgBreakPt ctermbg=53
   hi IndentGuidesOdd ctermbg=235
