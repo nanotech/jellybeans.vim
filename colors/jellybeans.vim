@@ -269,7 +269,7 @@ endfun
 " returns the palette index to approximate the given R/G/B color levels
 fun! s:color(r, g, b)
   " map greys directly (see xterm's 256colres.pl)
-  if &t_Co == 256 && a:r == a:g && a:g == a:b
+  if &t_Co == 256 && a:r == a:g && a:g == a:b && a:r > 3 && a:r < 243
     return float2nr(round(a:r - 8) / 10.0) + 232
   endif
 
