@@ -361,7 +361,16 @@ fun! s:X(group, fg, bg, attr, lcfg, lcbg)
     endif
   endif
 
-  exec "hi ".a:group." gui=".l:attr." cterm=".l:cterm_attr
+  if exists("g:jellybeans_use_gui_italics") && g:jellybeans_use_gui_italics
+    let l:gui_attr = l:attr
+  else
+    let l:gui_attr = join(filter(split(l:attr, ","), "v:val !=? 'italic'"), ",")
+    if empty(l:gui_attr)
+      let l:gui_attr = "none"
+    endif
+  endif
+
+  exec "hi ".a:group." gui=".l:gui_attr." cterm=".l:cterm_attr
 endfun
 " }}}
 
