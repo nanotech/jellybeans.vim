@@ -331,7 +331,7 @@ fun! s:X(group, fg, bg, attr, lcfg, lcbg)
     let l:fge = empty(a:fg)
     let l:bge = empty(a:bg)
 
-    if !g:jellybeans_use_term_background_color && a:bg == s:background_color
+    if g:jellybeans_use_term_background_color && a:bg == s:background_color
       let l:ctermbg = 'NONE'
     else
       let l:ctermbg = s:rgb(a:bg)
