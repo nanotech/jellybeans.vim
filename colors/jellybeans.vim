@@ -66,14 +66,16 @@ endif
 " Configuration Variables:
 " - g:jellybeans_overrides
 " - g:jellybeans_use_lowcolor_black
-" - g:jellybeans_use_term_background_color
 " - g:jellybeans_use_gui_italics           (default = 1)
 " - g:jellybeans_use_term_italics          (default = 0)
 
 let s:background_color = "151515"
 
 " Backwards compatibility
-if exists("g:jellybeans_background_color") || exists("g:jellybeans_background_color_256")
+if exists("g:jellybeans_background_color")
+  \ || exists("g:jellybeans_background_color_256")
+  \ || exists("g:jellybeans_use_term_background_color")
+
   if !exists("g:jellybeans_overrides")
     let g:jellybeans_overrides = {}
   endif
@@ -88,13 +90,12 @@ if exists("g:jellybeans_background_color") || exists("g:jellybeans_background_co
   if exists("g:jellybeans_background_color_256")
     let g:jellybeans_overrides["background"]["256ctermbg"] = g:jellybeans_background_color_256
   endif
-endif
 
-" Ensure that g:jellybeans_use_term_background_color = 0 works with overrides
-if exists("g:jellybeans_overrides")
-  \ && has_key(g:jellybeans_overrides, "background")
-  \ && has_key(g:jellybeans_overrides["background"], "guibg")
-  let s:background_color = g:jellybeans_overrides["background"]["guibg"]
+  if exists("g:jellybeans_use_term_background_color")
+    \ && g:jellybeans_use_term_background_color
+    let g:jellybeans_overrides["background"]["ctermbg"] = "none"
+    let g:jellybeans_overrides["background"]["256ctermbg"] = "none"
+  endif
 endif
 
 if !exists("g:jellybeans_use_lowcolor_black") || g:jellybeans_use_lowcolor_black
@@ -102,17 +103,6 @@ if !exists("g:jellybeans_use_lowcolor_black") || g:jellybeans_use_lowcolor_black
 else
   let s:termBlack = "Grey"
 endif
-
-if !exists("g:jellybeans_use_term_background_color")
-  " OS X's Terminal.app and iTerm apply transparency to all
-  " backgrounds. Other terminals tend to only apply transparency
-  " to the default unhighlighted background.
-  "
-  " has("mac") only detects MacVim, not Apple's /usr/bin/vim.
-  " We could check system("uname"), but then we're calling
-  " external programs from a colorscheme.
-  let g:jellybeans_use_term_background_color = has("mac")
-end
 
 " Color approximation functions by Henry So, Jr. and David Liang {{{
 " Added to jellybeans.vim by Daniel Herbert
@@ -340,18 +330,12 @@ fun! s:X(group, fg, bg, attr, lcfg, lcbg)
     let l:fge = empty(a:fg)
     let l:bge = empty(a:bg)
 
-    if !g:jellybeans_use_term_background_color && a:bg == s:background_color
-      let l:ctermbg = 'NONE'
-    else
-      let l:ctermbg = s:rgb(a:bg)
-    endif
-
     if !l:fge && !l:bge
-      exec "hi ".a:group." guifg=#".a:fg." guibg=#".a:bg." ctermfg=".s:rgb(a:fg)." ctermbg=".l:ctermbg
+      exec "hi ".a:group." guifg=#".a:fg." guibg=#".a:bg." ctermfg=".s:rgb(a:fg)." ctermbg=".s:rgb(a:bg)
     elseif !l:fge && l:bge
       exec "hi ".a:group." guifg=#".a:fg." guibg=NONE ctermfg=".s:rgb(a:fg)." ctermbg=NONE"
     elseif l:fge && !l:bge
-      exec "hi ".a:group." guifg=NONE guibg=#".a:bg." ctermfg=NONE ctermbg=".l:ctermbg
+      exec "hi ".a:group." guifg=NONE guibg=#".a:bg." ctermfg=NONE ctermbg=".s:rgb(a:bg)
     endif
   endif
 
