@@ -23,6 +23,7 @@ custom highlighting parameters:
     \    'Todo': { 'guifg': '303030', 'guibg': 'f0f000',
     \              'ctermfg': 'Black', 'ctermbg': 'Yellow',
     \              'attr': 'bold' },
+    \    'Comment': { 'guifg': 'cccccc' },
     \}
 
 This removes the need to edit Jellybeans directly, simplifying
@@ -33,6 +34,32 @@ your colors work just as well in 256-color terminals.
 If you can pick better colors than the approximator, specify them
 in the `256ctermfg` and `256ctermbg` parameters to override
 its choices.
+
+#### Custom Background Colors
+
+To set a custom background color, override the special
+`background` highlight group:
+
+    let g:jellybeans_overrides = {
+    \    'background': { 'guibg': '000000' },
+    \}
+
+Jellybeans uses the background color in multiple highlight
+groups. Using the special `background` group overrides them all
+at once.
+
+This replaces `g:jellybeans_background_color` and
+`g:jellybeans_background_color_256` from Jellybeans versions
+before 1.6.
+
+#### Transparent Terminals
+
+If you use a transparent terminal and Jellybeans is drawing an
+opaque background over it, use this `background` override:
+
+    let g:jellybeans_overrides = {
+    \    'background': { 'ctermbg': 'none', '256ctermbg': 'none' },
+    \}
 
 ### Low-Color Black (16 and 8 color terminals)
 
@@ -61,6 +88,10 @@ support italics, add
     let g:jellybeans_use_term_italics = 1
 
 to your .vimrc to enable italics in terminal Vim.
+
+If you don't want italics even in GUI Vim, add
+
+    let g:jellybeans_use_gui_italics = 0
 
 ## Screenshots
 

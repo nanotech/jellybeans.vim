@@ -64,10 +64,10 @@ else
 endif
 
 " Configuration Variables:
-" - g:jellybeans_overrides
-" - g:jellybeans_use_lowcolor_black
-" - g:jellybeans_use_gui_italics           (default = 1)
-" - g:jellybeans_use_term_italics          (default = 0)
+" - g:jellybeans_overrides          (default = {})
+" - g:jellybeans_use_lowcolor_black (default = 1)
+" - g:jellybeans_use_gui_italics    (default = 1)
+" - g:jellybeans_use_term_italics   (default = 0)
 
 let s:background_color = "151515"
 
