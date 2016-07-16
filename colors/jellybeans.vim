@@ -67,7 +67,8 @@ endif
 " - g:jellybeans_overrides
 " - g:jellybeans_use_lowcolor_black
 " - g:jellybeans_use_term_background_color
-" - g:jellybeans_use_term_italics
+" - g:jellybeans_use_gui_italics           (default = 1)
+" - g:jellybeans_use_term_italics          (default = 0)
 
 let s:background_color = "151515"
 
@@ -314,6 +315,14 @@ fun! s:rgb(rgb)
   return s:color(l:r, l:g, l:b)
 endfun
 
+fun! s:remove_italic_attr(attr)
+  let l:attr = join(filter(split(a:attr, ","), "v:val !=? 'italic'"), ",")
+  if empty(l:attr)
+    let l:attr = "none"
+  endif
+  return l:attr
+endfun
+
 " sets the highlighting for the given group
 fun! s:X(group, fg, bg, attr, lcfg, lcbg)
   if s:low_color
@@ -355,13 +364,16 @@ fun! s:X(group, fg, bg, attr, lcfg, lcbg)
   if exists("g:jellybeans_use_term_italics") && g:jellybeans_use_term_italics
     let l:cterm_attr = l:attr
   else
-    let l:cterm_attr = join(filter(split(l:attr, ","), "v:val !=? 'italic'"), ",")
-    if empty(l:cterm_attr)
-      let l:cterm_attr = "none"
-    endif
+    let l:cterm_attr = s:remove_italic_attr(l:attr)
   endif
 
-  exec "hi ".a:group." gui=".l:attr." cterm=".l:cterm_attr
+  if !exists("g:jellybeans_use_gui_italics") || g:jellybeans_use_gui_italics
+    let l:gui_attr = l:attr
+  else
+    let l:gui_attr = s:remove_italic_attr(l:attr)
+  endif
+
+  exec "hi ".a:group." gui=".l:gui_attr." cterm=".l:cterm_attr
 endfun
 " }}}
 
@@ -645,6 +657,7 @@ endif
 
 " delete functions {{{
 delf s:X
+delf s:remove_italic_attr
 delf s:rgb
 delf s:color
 delf s:rgb_color
