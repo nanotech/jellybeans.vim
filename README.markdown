@@ -61,6 +61,21 @@ opaque background over it, use this `background` override:
     \    'background': { 'ctermbg': 'none', '256ctermbg': 'none' },
     \}
 
+### Italics
+
+Jellybeans disables italics in terminal Vim by default, as some
+terminals do other things with the text's colors instead of
+actually italicizing the text. If your terminal does fully
+support italics, add
+
+    let g:jellybeans_use_term_italics = 1
+
+to your .vimrc to enable italics in terminal Vim.
+
+If you don't want italics even in GUI Vim, add
+
+    let g:jellybeans_use_gui_italics = 0
+
 ### Low-Color Black (16 and 8 color terminals)
 
 Since the background on a dark terminal is usually black already,
@@ -77,21 +92,6 @@ to your .vimrc to render “black” text as Vim’s grey (ANSI white).
 Users of Apple’s pre-10.7 Terminal.app can use the TerminalColours
 plugin ([Leopard][tc-leopard], [Snow Leopard][tc-snowleopard]) to
 change the default colors.
-
-### Italics
-
-Jellybeans disables italics in terminal Vim by default, as some
-terminals do other things with the text's colors instead of
-actually italicizing the text. If your terminal does fully
-support italics, add
-
-    let g:jellybeans_use_term_italics = 1
-
-to your .vimrc to enable italics in terminal Vim.
-
-If you don't want italics even in GUI Vim, add
-
-    let g:jellybeans_use_gui_italics = 0
 
 ## Screenshots
 
