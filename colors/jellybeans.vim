@@ -71,30 +71,35 @@ endif
 
 let s:background_color = "151515"
 
+if exists("g:jellybeans_overrides")
+  let s:overrides = g:jellybeans_overrides
+else
+  let s:overrides = {}
+endif
+
 " Backwards compatibility
 if exists("g:jellybeans_background_color")
   \ || exists("g:jellybeans_background_color_256")
   \ || exists("g:jellybeans_use_term_background_color")
 
-  if !exists("g:jellybeans_overrides")
-    let g:jellybeans_overrides = {}
-  endif
-  if !has_key(g:jellybeans_overrides, "background")
-    let g:jellybeans_overrides["background"] = {}
+  let s:overrides = deepcopy(s:overrides)
+
+  if !has_key(s:overrides, "background")
+    let s:overrides["background"] = {}
   endif
 
   if exists("g:jellybeans_background_color")
-    let g:jellybeans_overrides["background"]["guibg"] = g:jellybeans_background_color
+    let s:overrides["background"]["guibg"] = g:jellybeans_background_color
   endif
 
   if exists("g:jellybeans_background_color_256")
-    let g:jellybeans_overrides["background"]["256ctermbg"] = g:jellybeans_background_color_256
+    let s:overrides["background"]["256ctermbg"] = g:jellybeans_background_color_256
   endif
 
   if exists("g:jellybeans_use_term_background_color")
     \ && g:jellybeans_use_term_background_color
-    let g:jellybeans_overrides["background"]["ctermbg"] = "none"
-    let g:jellybeans_overrides["background"]["256ctermbg"] = "none"
+    let s:overrides["background"]["ctermbg"] = "none"
+    let s:overrides["background"]["256ctermbg"] = "none"
   endif
 endif
 
@@ -585,7 +590,7 @@ if !s:low_color
   hi IndentGuidesEven ctermbg=234
 endif
 
-if exists("g:jellybeans_overrides")
+if !empty("s:overrides")
   fun! s:current_attr(group)
     let l:synid = synIDtrans(hlID(a:group))
     let l:attrs = []
@@ -632,7 +637,7 @@ if exists("g:jellybeans_overrides")
       unlet l:def
     endfor
   endfun
-  call s:load_colors(g:jellybeans_overrides)
+  call s:load_colors(s:overrides)
   delf s:load_colors
   delf s:load_color_def
   delf s:current_color
