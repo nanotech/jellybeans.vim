@@ -98,10 +98,10 @@ change the default colors.
 ![][preview-ss]
 
 
-[ir_black]: http://blog.infinitered.com/entries/show/6
+[ir_black]: https://web.archive.org/web/20140211124943/http://toddwerth.com/2008/01/25/a-black-os-x-leopard-terminal-theme-that-is-actually-readable/
 [twilight]: http://www.vim.org/scripts/script.php?script_id=1677
 [vimscript]: http://www.vim.org/scripts/script.php?script_id=2555
 [tc-leopard]: http://ciaranwal.sh/2007/11/01/customising-colours-in-leopard-terminal
-[tc-snowleopard]: http://github.com/timmfin/terminalcolours
-[preview-ss]: http://nanotech.nanotechcorp.net/downloads/jellybeans-preview.png
+[tc-snowleopard]: https://github.com/timmfin/terminalcolours
+[preview-ss]: https://nanotech.nanotechcorp.net/downloads/jellybeans-preview.png
 [ss-anchor]: #screenshots
