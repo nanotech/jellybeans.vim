@@ -52,10 +52,12 @@ This replaces `g:jellybeans_background_color` and
 `g:jellybeans_background_color_256` from Jellybeans versions
 before 1.6.
 
-#### Transparent Terminals
+#### Terminal Background
 
-If you use a transparent terminal and Jellybeans is drawing an
-opaque background over it, use this `background` override:
+If you would prefer to use your terminal's default background
+(e.g. for transparent backgrounds, image backgrounds, or a
+different color) instead of the background color that Jellybeans
+applies, use this `background` override:
 
     let g:jellybeans_overrides = {
     \    'background': { 'ctermbg': 'none', '256ctermbg': 'none' },
