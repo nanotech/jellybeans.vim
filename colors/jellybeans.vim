@@ -98,8 +98,8 @@ if exists("g:jellybeans_background_color")
 
   if exists("g:jellybeans_use_term_background_color")
     \ && g:jellybeans_use_term_background_color
-    let s:overrides["background"]["ctermbg"] = "none"
-    let s:overrides["background"]["256ctermbg"] = "none"
+    let s:overrides["background"]["ctermbg"] = "NONE"
+    let s:overrides["background"]["256ctermbg"] = "NONE"
   endif
 endif
 
@@ -302,18 +302,33 @@ fun! s:color(r, g, b)
   endif
 endfun
 
+fun! s:is_empty_or_none(str)
+  return empty(a:str) || a:str ==? "NONE"
+endfun
+
 " returns the palette index to approximate the 'rrggbb' hex string
 fun! s:rgb(rgb)
+  if s:is_empty_or_none(a:rgb)
+    return "NONE"
+  endif
   let l:r = ("0x" . strpart(a:rgb, 0, 2)) + 0
   let l:g = ("0x" . strpart(a:rgb, 2, 2)) + 0
   let l:b = ("0x" . strpart(a:rgb, 4, 2)) + 0
   return s:color(l:r, l:g, l:b)
 endfun
 
+fun! s:prefix_highlight_value_with(prefix, color)
+  if s:is_empty_or_none(a:color)
+    return "NONE"
+  else
+    return a:prefix . a:color
+  endif
+endfun
+
 fun! s:remove_italic_attr(attr)
   let l:attr = join(filter(split(a:attr, ","), "v:val !=? 'italic'"), ",")
   if empty(l:attr)
-    let l:attr = "none"
+    let l:attr = "NONE"
   endif
   return l:attr
 endfun
@@ -321,34 +336,18 @@ endfun
 " sets the highlighting for the given group
 fun! s:X(group, fg, bg, attr, lcfg, lcbg)
   if s:low_color
-    let l:fge = empty(a:lcfg)
-    let l:bge = empty(a:lcbg)
-
-    if !l:fge && !l:bge
-      exec "hi ".a:group." ctermfg=".a:lcfg." ctermbg=".a:lcbg
-    elseif !l:fge && l:bge
-      exec "hi ".a:group." ctermfg=".a:lcfg." ctermbg=NONE"
-    elseif l:fge && !l:bge
-      exec "hi ".a:group." ctermfg=NONE ctermbg=".a:lcbg
-    endif
+    exec "hi ".a:group.
+    \ " ctermfg=".s:prefix_highlight_value_with("", a:lcfg).
+    \ " ctermbg=".s:prefix_highlight_value_with("", a:lcbg)
   else
-    let l:fge = empty(a:fg)
-    let l:bge = empty(a:bg)
-
-    if !l:fge && !l:bge
-      exec "hi ".a:group." guifg=#".a:fg." guibg=#".a:bg." ctermfg=".s:rgb(a:fg)." ctermbg=".s:rgb(a:bg)
-    elseif !l:fge && l:bge
-      exec "hi ".a:group." guifg=#".a:fg." guibg=NONE ctermfg=".s:rgb(a:fg)." ctermbg=NONE"
-    elseif l:fge && !l:bge
-      exec "hi ".a:group." guifg=NONE guibg=#".a:bg." ctermfg=NONE ctermbg=".s:rgb(a:bg)
-    endif
+    exec "hi ".a:group.
+    \ " guifg=".s:prefix_highlight_value_with("#", a:fg).
+    \ " guibg=".s:prefix_highlight_value_with("#", a:bg).
+    \ " ctermfg=".s:rgb(a:fg).
+    \ " ctermbg=".s:rgb(a:bg)
   endif
 
-  if empty(a:attr)
-    let l:attr = "none"
-  else
-    let l:attr = a:attr
-  endif
+  let l:attr = s:prefix_highlight_value_with("", a:attr)
 
   if exists("g:jellybeans_use_term_italics") && g:jellybeans_use_term_italics
     let l:cterm_attr = l:attr
@@ -386,8 +385,8 @@ endif
 call s:X("Visual","","404040","","",s:termBlack)
 call s:X("Cursor",s:background_color,"b0d0f0","","","")
 
-call s:X("LineNr","605958",s:background_color,"none",s:termBlack,"")
-call s:X("CursorLineNr","ccc5c4","","none","White","")
+call s:X("LineNr","605958",s:background_color,"NONE",s:termBlack,"")
+call s:X("CursorLineNr","ccc5c4","","NONE","White","")
 call s:X("Comment","888888","","italic","Grey","")
 call s:X("Todo","c7c7c7","","bold","White",s:termBlack)
 
@@ -647,7 +646,9 @@ endif
 " delete functions {{{
 delf s:X
 delf s:remove_italic_attr
+delf s:prefix_highlight_value_with
 delf s:rgb
+delf s:is_empty_or_none
 delf s:color
 delf s:rgb_color
 delf s:rgb_level
