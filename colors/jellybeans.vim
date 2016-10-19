@@ -416,6 +416,7 @@ call s:X("Statement","8197bf","","","DarkBlue","")
 call s:X("PreProc","8fbfdc","","","LightBlue","")
 
 hi! link Operator Structure
+hi! link Conceal Operator
 
 call s:X("Type","ffb964","","","Yellow","")
 call s:X("NonText","606060",s:background_color,"",s:termBlack,"")
