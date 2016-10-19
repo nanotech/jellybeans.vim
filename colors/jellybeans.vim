@@ -13,8 +13,8 @@
 " URL:          github.com/nanotech/jellybeans.vim
 " Scripts URL:  vim.org/scripts/script.php?script_id=2555
 " Maintainer:   NanoTech (nanotech.nanotechcorp.net)
-" Version:      1.6~git
-" Last Change:  January 15th, 2012
+" Version:      1.6
+" Last Change:  October 18th, 2016
 " License:      MIT
 " Contributors: Andrew Wong (w0ng)
 "               Brian Marshall (bmars)
@@ -30,7 +30,7 @@
 "               Siwen Yu (yusiwen)
 "               Tim Willis (willist)
 "
-" Copyright (c) 2009-2012 NanoTech
+" Copyright (c) 2009-2016 NanoTech
 "
 " Permission is hereby granted, free of charge, to any per‐
 " son obtaining a copy of this software and associated doc‐
