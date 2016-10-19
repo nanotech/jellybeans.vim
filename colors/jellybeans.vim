@@ -16,11 +16,19 @@
 " Version:      1.6~git
 " Last Change:  January 15th, 2012
 " License:      MIT
-" Contributors: Daniel Herbert (pocketninja)
-"               Henry So, Jr. <henryso@panix.com>
+" Contributors: Andrew Wong (w0ng)
+"               Brian Marshall (bmars)
+"               Daniel Herbert (pocketninja)
 "               David Liang <bmdavll at gmail dot com>
+"               Henry So, Jr. <henryso@panix.com>
+"               Joe Doherty (docapotamus)
+"               Karl Litterfeldt (Litterfeldt)
+"               Keith Pitt (keithpitt)
+"               Philipp Rustemeier (12foo)
+"               Rafael Bicalho (rbika)
 "               Rich Healey (richo)
-"               Andrew Wong (w0ng)
+"               Siwen Yu (yusiwen)
+"               Tim Willis (willist)
 "
 " Copyright (c) 2009-2012 NanoTech
 "
