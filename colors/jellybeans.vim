@@ -65,7 +65,7 @@ endif
 
 let colors_name = "jellybeans"
 
-if has("gui_running") || &t_Co >= 88
+if has("gui_running") || (exists('&tgc') && &termguicolors) || &t_Co >= 88
   let s:low_color = 0
 else
   let s:low_color = 1
