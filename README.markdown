@@ -99,6 +99,12 @@ change the default colors.
 
 ![][preview-ss]
 
+The font in the screenshot is 10pt [Monaco][monaco]:
+
+```vim
+set guifont=Monaco:h10 noanti
+```
+
 
 [ir_black]: https://web.archive.org/web/20140211124943/http://toddwerth.com/2008/01/25/a-black-os-x-leopard-terminal-theme-that-is-actually-readable/
 [twilight]: http://www.vim.org/scripts/script.php?script_id=1677
@@ -107,3 +113,4 @@ change the default colors.
 [tc-snowleopard]: https://github.com/timmfin/terminalcolours
 [preview-ss]: https://nanotech.nanotechcorp.net/downloads/jellybeans-preview.png
 [ss-anchor]: #screenshots
+[monaco]: https://en.wikipedia.org/wiki/Monaco_(typeface)
