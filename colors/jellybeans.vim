@@ -396,7 +396,12 @@ call s:X("Cursor",s:background_color,"b0d0f0","","","")
 call s:X("LineNr","605958",s:background_color,"NONE",s:termBlack,"")
 call s:X("CursorLineNr","ccc5c4","","NONE","White","")
 call s:X("Comment","888888","","italic","Grey","")
-call s:X("Todo","c7c7c7","","bold","White",s:termBlack)
+
+if !exists("g:jellybeans_loud_todo")
+  call s:X("Todo","c7c7c7","","bold","White",s:termBlack)
+else
+  call s:X("Todo","303030","F0F000","bold","White",s:termBlack)
+endif
 
 call s:X("StatusLine","000000","dddddd","italic","","White")
 call s:X("StatusLineNC","ffffff","403c41","italic","White","Black")
