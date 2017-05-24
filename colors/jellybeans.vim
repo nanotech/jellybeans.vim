@@ -520,6 +520,18 @@ call s:X("rubyRegexpSpecial","a40073","","","Magenta","")
 
 call s:X("rubyPredefinedIdentifier","de5577","","","Red","")
 
+" XML
+
+call s:X("xmlTag","8197bf","","","DarkBlue","")
+call s:X("xmlTagName","8197bf","","","DarkBlue","")
+call s:X("xmlEndTag","8197bf","","","DarkBlue","")
+
+" HTML
+
+call s:X("htmlTag","8197bf","","","DarkBlue","")
+call s:X("htmlTagName","8197bf","","","DarkBlue","")
+call s:X("htmlEndTag","8197bf","","","DarkBlue","")
+
 " Erlang
 
 hi! link erlangAtom rubySymbol
