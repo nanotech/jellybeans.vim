@@ -117,8 +117,8 @@ else
   let s:termBlack = "Grey"
 endif
 
-" When `termguicolors` is set, Vim[^1] ignores `guibg=NONE` after
-" `guibg` is already set to a color. See:
+" When `termguicolors` is set, Vim[^1] ignores `hi Normal guibg=NONE`
+" after Normal's `guibg` is already set to a color. See:
 "
 " - https://github.com/vim/vim/issues/981
 " - https://github.com/nanotech/jellybeans.vim/issues/64
@@ -128,9 +128,6 @@ endif
 " background color isn't set to a value different from its override.
 "
 " [^1]: Tested on 8.0.567. Does not apply to Neovim.
-"
-" TODO: Enable this behavior for all highlights by applying
-"       overrides before calling highlight commands.
 "
 if has_key(s:overrides, "background") && has_key(s:overrides["background"], "guibg")
     let s:background_color = s:overrides["background"]["guibg"]
