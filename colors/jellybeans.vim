@@ -73,7 +73,7 @@ endif
 
 " Configuration Variables:
 " - g:jellybeans_overrides          (default = {})
-" - g:jellybeans_use_lowcolor_black (default = 1)
+" - g:jellybeans_use_lowcolor_black (default = 0)
 " - g:jellybeans_use_gui_italics    (default = 1)
 " - g:jellybeans_use_term_italics   (default = 0)
 
@@ -111,7 +111,7 @@ if exists("g:jellybeans_background_color")
   endif
 endif
 
-if !exists("g:jellybeans_use_lowcolor_black") || g:jellybeans_use_lowcolor_black
+if exists("g:jellybeans_use_lowcolor_black") && g:jellybeans_use_lowcolor_black
   let s:termBlack = "Black"
 else
   let s:termBlack = "Grey"

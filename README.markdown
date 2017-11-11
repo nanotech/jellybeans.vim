@@ -81,15 +81,16 @@ If you don't want italics even in GUI Vim, add
 ### Low-Color Black (16 and 8 color terminals)
 
 Since the background on a dark terminal is usually black already,
-Jellybeans appropriates the black ANSI color as a dark grey and
-uses no color when it really wants black.
+Jellybeans can appropriate the black ANSI color as a dark grey and
+use no color when it really wants black.
 
-If you can’t or don’t want to change your terminal’s color
-mappings, add
+After changing your terminal’s color palette (`#444444` is
+suggested), add this to your .vimrc:
 
-    let g:jellybeans_use_lowcolor_black = 0
+    let g:jellybeans_use_lowcolor_black = 1
 
-to your .vimrc to render “black” text as Vim’s grey (ANSI white).
+*This option was changed to be disabled by default in version
+1.7 (unreleased).*
 
 ## Screenshots
 
