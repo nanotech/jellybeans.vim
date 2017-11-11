@@ -394,7 +394,31 @@ set background=dark
 
 call s:X("CursorLine","","1c1c1c","","",s:termBlack)
 call s:X("CursorColumn","","1c1c1c","","",s:termBlack)
-call s:X("MatchParen","ffffff","556779","bold","","DarkCyan")
+
+" Some of Terminal.app's default themes have a cursor color
+" too close to Jellybeans' preferred MatchParen background
+" color to be easily distinguishable. Other terminals tend
+" to use a brighter cursor color.
+"
+" Use a more distinct color in Terminal.app, and also in
+" low-color terminals if the preferred background color is
+" not available.
+if !has('gui_running') && $TERM_PROGRAM == "Apple_Terminal"
+    let s:matchParenGuiFg = "dd0093"
+    let s:matchParenGuiBg = "000000"
+else
+    let s:matchParenGuiFg = "ffffff"
+    let s:matchParenGuiBg = "556779"
+endif
+if s:termBlack != "Black"
+    let s:matchParenTermFg = "Magenta"
+    let s:matchParenTermBg = ""
+else
+    let s:matchParenTermFg = ""
+    let s:matchParenTermBg = s:termBlack
+endif
+call s:X("MatchParen",s:matchParenGuiFg,s:matchParenGuiBg,"bold",
+\                     s:matchParenTermFg,s:matchParenTermBg)
 
 call s:X("TabLine","000000","b0b8c0","italic","",s:termBlack)
 call s:X("TabLineFill","9098a0","","","",s:termBlack)
