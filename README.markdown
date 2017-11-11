@@ -63,6 +63,40 @@ applies, use this `background` override:
     \    'background': { 'ctermbg': 'none', '256ctermbg': 'none' },
     \}
 
+#### `MatchParen` Colors
+
+Jellybeans sets alternate `MatchParen` colors (magenta on black)
+in some terminals to be more readable out of the box:
+
+- Apple's Terminal.app has default themes with cursor colors
+  that are too close in brightness to Jellybeans' preferred
+  `MatchParen` background color of `#556779` to be
+  clearly distinguishable.
+- Default 16-color terminal palettes don't typically have a
+  color available that can approximate the preferred
+  `MatchParen` background color.
+
+If you use Terminal.app with a brighter cursor color, you can
+use the standard `MatchParen` colors with this override:
+
+    let g:jellybeans_overrides = {
+    \    'MatchParen': { 'guifg': 'ffffff', 'guibg': '556779' },
+    \}
+
+To use the standard `MatchParen` colors in a 16-color terminal,
+configure Low-Color Black as [described in the section
+below](#low-color-black-16-and-8-color-terminals).
+
+If you prefer the alternate `MatchParen` colors, you can use them
+everywhere with
+
+    let g:jellybeans_overrides = {
+    \    'MatchParen': { 'guifg': 'dd0093', 'guibg': '000000',
+    \                    'ctermfg': 'Magenta', 'ctermbg': '' },
+    \}
+
+*Added in version 1.7 (unreleased).*
+
 ### Italics
 
 Jellybeans disables italics in terminal Vim by default, as some
