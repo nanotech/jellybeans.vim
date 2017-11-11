@@ -91,10 +91,6 @@ mappings, add
 
 to your .vimrc to render “black” text as Vim’s grey (ANSI white).
 
-Users of Apple’s pre-10.7 Terminal.app can use the TerminalColours
-plugin ([Leopard][tc-leopard], [Snow Leopard][tc-snowleopard]) to
-change the default colors.
-
 ## Screenshots
 
 ![][preview-ss]
@@ -109,8 +105,6 @@ set guifont=Monaco:h10 noanti
 [ir_black]: https://web.archive.org/web/20140211124943/http://toddwerth.com/2008/01/25/a-black-os-x-leopard-terminal-theme-that-is-actually-readable/
 [twilight]: http://www.vim.org/scripts/script.php?script_id=1677
 [vimscript]: http://www.vim.org/scripts/script.php?script_id=2555
-[tc-leopard]: http://ciaranwal.sh/2007/11/01/customising-colours-in-leopard-terminal
-[tc-snowleopard]: https://github.com/timmfin/terminalcolours
 [preview-ss]: https://nanotech.nanotechcorp.net/downloads/jellybeans-preview.png
 [ss-anchor]: #screenshots
 [monaco]: https://en.wikipedia.org/wiki/Monaco_(typeface)
