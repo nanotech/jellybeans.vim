@@ -392,19 +392,17 @@ endfun
 call s:X("Normal","e8e8d3",s:background_color,"","White","")
 set background=dark
 
-if version >= 700
-  call s:X("CursorLine","","1c1c1c","","",s:termBlack)
-  call s:X("CursorColumn","","1c1c1c","","",s:termBlack)
-  call s:X("MatchParen","ffffff","556779","bold","","DarkCyan")
+call s:X("CursorLine","","1c1c1c","","",s:termBlack)
+call s:X("CursorColumn","","1c1c1c","","",s:termBlack)
+call s:X("MatchParen","ffffff","556779","bold","","DarkCyan")
 
-  call s:X("TabLine","000000","b0b8c0","italic","",s:termBlack)
-  call s:X("TabLineFill","9098a0","","","",s:termBlack)
-  call s:X("TabLineSel","000000","f0f0f0","italic,bold",s:termBlack,"White")
+call s:X("TabLine","000000","b0b8c0","italic","",s:termBlack)
+call s:X("TabLineFill","9098a0","","","",s:termBlack)
+call s:X("TabLineSel","000000","f0f0f0","italic,bold",s:termBlack,"White")
 
-  " Auto-completion
-  call s:X("Pmenu","ffffff","606060","","White",s:termBlack)
-  call s:X("PmenuSel","101010","eeeeee","",s:termBlack,"White")
-endif
+" Auto-completion
+call s:X("Pmenu","ffffff","606060","","White",s:termBlack)
+call s:X("PmenuSel","101010","eeeeee","",s:termBlack,"White")
 
 call s:X("Visual","","404040","","",s:termBlack)
 call s:X("Cursor",s:background_color,"b0d0f0","","","")
