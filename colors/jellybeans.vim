@@ -65,7 +65,13 @@ endif
 
 let colors_name = "jellybeans"
 
-if has("gui_running") || (has('termguicolors') && &termguicolors) || &t_Co >= 88
+if has("gui_running") || (has('termguicolors') && &termguicolors)
+  let s:true_color = 1
+else
+  let s:true_color = 0
+endif
+
+if s:true_color || &t_Co >= 88
   let s:low_color = 0
 else
   let s:low_color = 1
@@ -372,15 +378,18 @@ endfun
 " sets the highlighting for the given group
 fun! s:X(group, fg, bg, attr, lcfg, lcbg)
   if s:low_color
-    exec "hi ".a:group.
+    let l:cmd = "hi ".a:group.
     \ " ctermfg=".s:prefix_highlight_value_with("", a:lcfg).
     \ " ctermbg=".s:prefix_highlight_value_with("", a:lcbg)
   else
-    exec "hi ".a:group.
+    let l:cmd = "hi ".a:group.
     \ " guifg=".s:prefix_highlight_value_with("#", a:fg).
-    \ " guibg=".s:prefix_highlight_value_with("#", a:bg).
-    \ " ctermfg=".s:rgb(a:fg).
-    \ " ctermbg=".s:rgb(a:bg)
+    \ " guibg=".s:prefix_highlight_value_with("#", a:bg)
+    if !s:true_color
+      let l:cmd = l:cmd.
+      \ " ctermfg=".s:rgb(a:fg).
+      \ " ctermbg=".s:rgb(a:bg)
+    endif
   endif
 
   let l:attr = s:prefix_highlight_value_with("", a:attr)
@@ -397,7 +406,8 @@ fun! s:X(group, fg, bg, attr, lcfg, lcbg)
     let l:gui_attr = s:remove_italic_attr(l:attr)
   endif
 
-  exec "hi ".a:group." gui=".l:gui_attr." cterm=".l:cterm_attr
+  let l:cmd = l:cmd." gui=".l:gui_attr." cterm=".l:cterm_attr
+  exec l:cmd
 endfun
 " }}}
 
