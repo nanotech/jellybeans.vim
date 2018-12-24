@@ -11,6 +11,20 @@ This script is [vimscript #2555][vimscript] at Vim.org.
 
 Scroll down for [screenshots][ss-anchor]!
 
+## Installation
+Install the color scheme by adding it to your `~/.vim/colors` directory
+```bash
+mkdir -p ~/.vim/colors
+(cd ~/.vim/colors && curl -O https://raw.githubusercontent.com/nanotech/jellybeans.vim/master/colors/jellybeans.vim)
+```
+
+To enable the jellybeans color scheme, use 
+```
+:colorscheme jellybeans
+```
+
+If you are satisfied, you can add `colorscheme jellybeans` to your `~/.vimrc` file (`_vimrc` in Windows).
+
 ## Options
 
 ### Custom Highlights
