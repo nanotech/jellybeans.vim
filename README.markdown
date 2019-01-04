@@ -57,11 +57,14 @@ before 1.6.
 If you would prefer to use your terminal's default background
 (e.g. for transparent backgrounds, image backgrounds, or a
 different color) instead of the background color that Jellybeans
-applies, use this `background` override:
+applies, use this `background` override code:
 
     let g:jellybeans_overrides = {
     \    'background': { 'ctermbg': 'none', '256ctermbg': 'none' },
     \}
+    if has('termguicolors') && &termguicolors
+        let g:jellybeans_overrides['background']['guibg'] = 'none'
+    endif
 
 #### `MatchParen` Colors
 
