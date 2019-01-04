@@ -21,12 +21,22 @@ cd ~/.vim/colors
 curl -O https://raw.githubusercontent.com/nanotech/jellybeans.vim/master/colors/jellybeans.vim
 ```
 
+Jellybeans can also be installed through plugin managers such as
+[dein.vim][dein], [Pathogen][pathogen], [VAM][vam],
+[vim-plug][vim-plug], [Vundle][vundle], etc.
+
 To enable the jellybeans color scheme, use 
 ```
 :colorscheme jellybeans
 ```
 
 If you are satisfied, you can add `colorscheme jellybeans` to your `~/.vimrc` file (`_vimrc` in Windows).
+
+[dein]: https://github.com/Shougo/dein.vim
+[pathogen]: https://github.com/tpope/vim-pathogen
+[vam]: https://github.com/MarcWeber/vim-addon-manager
+[vim-plug]: https://github.com/junegunn/vim-plug
+[vundle]: https://github.com/VundleVim/Vundle.vim
 
 ## Options
 
