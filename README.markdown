@@ -9,7 +9,12 @@ those in `ansi-term-colors.txt` for best results.
 
 This script is [vimscript #2555][vimscript] at Vim.org.
 
+Jellybeans has also been ported to other editors and programs,
+listed on the [Ports wiki page][wiki-ports].
+
 Scroll down for [screenshots][ss-anchor]!
+
+[wiki-ports]: https://github.com/nanotech/jellybeans.vim/wiki/Ports
 
 ## Installation
 
