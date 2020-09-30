@@ -18,6 +18,23 @@ Scroll down for [screenshots][ss-anchor]!
 
 ## Installation
 
+### Packages
+
+* Fedora
+
+```bash
+dnf install vim-jellybeans
+```
+
+* RHEL/CentOS
+
+```bash
+yum install https://dl.fedoraproject.org/pub/epel/epel-release-latest-$(rpm --eval %rhel).noarch.rpm
+yum install vim-jellybeans
+```
+
+### Manual
+
 Install the color scheme by adding it to your `~/.vim/colors` directory
 
 ```bash
